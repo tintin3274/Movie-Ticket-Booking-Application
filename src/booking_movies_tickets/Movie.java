@@ -1,22 +1,21 @@
 package booking_movies_tickets;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Movie {
     private String nameEn;
     private String nameTh;
-    private String description;
     private String rate;
     private String genre;
     private String imgPosterPath;
     private int length;
     private LocalDate releaseDate;
 
-    public Movie(String nameEn, String nameTh, String description, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate) {
+    public Movie(String nameEn, String nameTh, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate) {
         this.nameEn = nameEn;
         this.nameTh = nameTh;
-        this.description = description;
         this.rate = rate;
         this.genre = genre;
         this.imgPosterPath = imgPosterPath;
@@ -30,10 +29,6 @@ public class Movie {
 
     public String getNameTh() {
         return nameTh;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public String getRate() {
@@ -54,5 +49,10 @@ public class Movie {
 
     public LocalDate getReleaseDate() {
         return releaseDate;
+    }
+
+    @Override
+    public String toString() {
+        return nameEn+"\n"+nameTh+"\n"+"Release Date: "+releaseDate;
     }
 }
