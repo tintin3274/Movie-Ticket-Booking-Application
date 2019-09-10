@@ -12,6 +12,7 @@ public class Movie {
     private String imgPosterPath;
     private int length;
     private LocalDate releaseDate;
+    ArrayList<Theater> theatersList = new ArrayList<>();
 
     public Movie(String nameEn, String nameTh, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate) {
         this.nameEn = nameEn;
@@ -49,6 +50,10 @@ public class Movie {
 
     public LocalDate getReleaseDate() {
         return releaseDate;
+    }
+
+    public void addTheater(Theater theater){
+        theatersList.add(theater);
     }
 
     @Override

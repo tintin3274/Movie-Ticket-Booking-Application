@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class ChairSelectController {
-    ArrayList<Button> buttonList = new ArrayList<>();
+    ArrayList<Button> buttonsList = new ArrayList<>();
     ArrayList<String> chair = new ArrayList<>();
     Button button[][] = new Button[15][20];
     @FXML
@@ -36,14 +36,14 @@ public class ChairSelectController {
         Button b = (Button) e.getSource();
         System.out.println(b.getId());
         //System.out.println(b);
-        if(buttonList.contains(b)){
-            buttonList.remove(b);
+        if(buttonsList.contains(b)){
+            buttonsList.remove(b);
             b.setStyle("-fx-background-image: url('/image/chair-1-2-3-4-22.png');-fx-background-size: 39 25;-fx-background-position: center center");
             chair.remove(b.getId());
         }
         else{
-            buttonList.add(b);
-            b.setStyle("");
+            buttonsList.add(b);
+            b.setStyle(null);
             chair.add(b.getId());
         }
         Collections.sort(chair);
