@@ -5,26 +5,24 @@ import java.util.ArrayList;
 
 public class Theater {
     private String name;
-    private ArrayList<String> systemType = new ArrayList<>();
+    private String systemType;
     private ArrayList<Round> roundsList = new ArrayList<>();
 
-    public Theater(String name) {
+    public Theater(String name, String systemType) {
         this.name = name;
+        this.systemType = systemType;
     }
 
     public void addRound(Round round){
         roundsList.add(round);
     }
 
-    public void addSystemType(String type){
-        systemType.add(type);
-    }
 
     public String getName() {
         return name;
     }
 
-    public ArrayList<String> getSystemType() {
+    public String getSystemType() {
         return systemType;
     }
 

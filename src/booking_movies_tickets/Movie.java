@@ -3,6 +3,8 @@ package booking_movies_tickets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Movie {
     private String nameEn;
@@ -12,7 +14,7 @@ public class Movie {
     private String imgPosterPath;
     private int length;
     private LocalDate releaseDate;
-    ArrayList<Theater> theatersList = new ArrayList<>();
+    private Set<String> systemType = new LinkedHashSet<>();
 
     public Movie(String nameEn, String nameTh, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate) {
         this.nameEn = nameEn;
@@ -52,8 +54,12 @@ public class Movie {
         return releaseDate;
     }
 
-    public void addTheater(Theater theater){
-        theatersList.add(theater);
+    public void addSystemType(String systemType){
+        this.systemType.add(systemType);
+    }
+
+    public Set<String> getSystemType() {
+        return systemType;
     }
 
     @Override

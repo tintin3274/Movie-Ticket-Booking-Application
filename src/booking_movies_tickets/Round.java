@@ -8,11 +8,15 @@ public class Round {
     private Movie movie;
     private String time;
     private ArrayList<Button> buttonsList = null;
-    private ArrayList<String> chair = null;
+    private ArrayList<String> seat = null;
 
     public Round(Movie movie, String time) {
         this.movie = movie;
         this.time = time;
+    }
+
+    public Movie getMovie() {
+        return movie;
     }
 
     public String getTime() {
@@ -23,7 +27,9 @@ public class Round {
         this.buttonsList = buttonsList;
     }
 
-    public void setChair(ArrayList<String> chair) {
-        this.chair = chair;
+    public void setSeat(ArrayList<String> chair) {
+        this.seat = chair;
     }
+
+
 }
