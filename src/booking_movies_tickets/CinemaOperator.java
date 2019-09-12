@@ -24,15 +24,68 @@ public class CinemaOperator {
         movie1.addSystemType("3D");
         movie1.addSystemType("4DX");
 
-        theater1 = new Theater("Theater1", "2D");
-        theater2 = new Theater("Theater2","4K");
-        theater3 = new Theater("Theater3", "4K");
-        theater4 = new Theater("Theater4", "3D");
-        theater5 = new Theater("Theater5", "IMAX Digital 2D");
-        theater6 = new Theater("Theater6", "4DX");
+        movie2.addSystemType("2D");
+        movie2.addSystemType("4K");
+        movie2.addSystemType("3D");
+        movie2.addSystemType("4DX");
+
+        movie3.addSystemType("2D");
+        movie3.addSystemType("4K");
+        movie3.addSystemType("3D");
+        movie3.addSystemType("4DX");
+
+        movie4.addSystemType("2D");
+        movie4.addSystemType("4K");
+        movie4.addSystemType("3D");
+        movie4.addSystemType("4DX");
+
+        movie5.addSystemType("2D");
+        movie5.addSystemType("4K");
+        movie5.addSystemType("3D");
+        movie5.addSystemType("4DX");
+
+        movie6.addSystemType("2D");
+        movie6.addSystemType("4K");
+        movie6.addSystemType("3D");
+        movie6.addSystemType("4DX");
+
+        theater1 = new Theater("Theater1", "2D", "Normal");
+        theater2 = new Theater("Theater2","4K", "Normal");
+        theater3 = new Theater("Theater3", "4K", "Mix");
+        theater4 = new Theater("Theater4", "3D", "Mix");
+        theater5 = new Theater("Theater5", "IMAX Digital 2D", "Mix");
+        theater6 = new Theater("Theater6", "4DX", "Mix");
 
 
-        theater1.addRound(new Round(movie1, "11:00"));
+        theater1.addRound(new Round(theater1, movie1, "11:00"));
+        theater1.addRound(new Round(theater1, movie2, "13:00"));
+        theater1.addRound(new Round(theater1, movie1, "16:00"));
+        theater1.addRound(new Round(theater1, movie3, "19:00"));
+
+        theater2.addRound(new Round(theater2, movie4, "11:00"));
+        theater2.addRound(new Round(theater2, movie3, "13:30"));
+        theater2.addRound(new Round(theater2, movie6, "17:30"));
+        theater2.addRound(new Round(theater2, movie5, "21:00"));
+
+        theater3.addRound(new Round(theater3, movie2, "11:00"));
+        theater3.addRound(new Round(theater3, movie5, "15:00"));
+        theater3.addRound(new Round(theater3, movie4, "18:00"));
+        theater3.addRound(new Round(theater3, movie6, "21:00"));
+
+        theater4.addRound(new Round(theater4, movie1, "11:00"));
+        theater4.addRound(new Round(theater4, movie3, "13:15"));
+        theater4.addRound(new Round(theater4, movie6, "16:30"));
+        theater4.addRound(new Round(theater4, movie6, "20:15"));
+
+        theater5.addRound(new Round(theater5, movie4, "11:00"));
+        theater5.addRound(new Round(theater5, movie6, "13:30"));
+        theater5.addRound(new Round(theater5, movie1, "16:45"));
+        theater5.addRound(new Round(theater5, movie4, "20:00"));
+
+        theater6.addRound(new Round(theater6, movie1, "11:00"));
+        theater6.addRound(new Round(theater6, movie3, "14:30"));
+        theater6.addRound(new Round(theater6, movie6, "17:45"));
+        theater6.addRound(new Round(theater6, movie2, "21:00"));
 
     }
     private static CinemaOperator cinemaInstance;

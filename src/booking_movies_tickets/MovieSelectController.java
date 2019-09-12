@@ -63,7 +63,7 @@ public class MovieSelectController {
 
     @FXML public void mouseClickImage(MouseEvent event) throws IOException {
         ImageView image = (ImageView) event.getSource();
-        System.out.println(image.getId());
+        //System.out.println(image.getId());
         Stage stage = (Stage) image.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("theater_round_select.fxml"));
         stage.setScene(new Scene(loader.load(), 1280, 720));

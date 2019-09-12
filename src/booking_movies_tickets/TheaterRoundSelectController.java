@@ -188,7 +188,7 @@ public class TheaterRoundSelectController {
 
     @FXML public void handleRoundButton(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
-        System.out.println(button.getId());
+        //System.out.println(button.getId());
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("seat_select.fxml"));
         stage.setScene(new Scene(loader.load(), 1280, 720));
