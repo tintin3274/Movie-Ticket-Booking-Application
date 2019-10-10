@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MovieSelectController">
+   <children>
+      <ImageView fitHeight="937.0" fitWidth="1297.0" layoutX="-7.0" layoutY="-69.0">
+         <image>
+            <Image url="@../image/BackgroundSelectMovie.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#9e3434" layoutX="556.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Movies">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="moviePoster1" fitHeight="278.0" fitWidth="200.0" layoutX="28.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
+         <image>
+            <Image url="@../image/image_poster/ComingSoon.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="moviePoster2" fitHeight="278.0" fitWidth="200.0" layoutX="233.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
+         <image>
+            <Image url="@../image/image_poster/ComingSoon.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="moviePoster3" fitHeight="278.0" fitWidth="200.0" layoutX="438.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
+         <image>
+            <Image url="@../image/image_poster/ComingSoon.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="moviePoster4" fitHeight="278.0" fitWidth="200.0" layoutX="643.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
+         <image>
+            <Image url="@../image/image_poster/ComingSoon.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="moviePoster5" fitHeight="278.0" fitWidth="200.0" layoutX="848.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
+         <image>
+            <Image url="@../image/image_poster/ComingSoon.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="moviePoster6" fitHeight="278.0" fitWidth="200.0" layoutX="1053.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
+         <image>
+            <Image url="@../image/image_poster/ComingSoon.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="label1" layoutX="28.0" layoutY="367.0" prefHeight="70.0" prefWidth="200.0" text="Label Example" textFill="#ae2c37">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="label2" layoutX="233.0" layoutY="367.0" prefHeight="70.0" prefWidth="200.0" text="Label Example" textFill="#ae2c37">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="label3" layoutX="438.0" layoutY="367.0" prefHeight="70.0" prefWidth="200.0" text="Label Example" textFill="#ae2c37">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="label4" layoutX="643.0" layoutY="367.0" prefHeight="70.0" prefWidth="200.0" text="Label Example" textFill="#ae2c37">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="label5" layoutX="848.0" layoutY="367.0" prefHeight="70.0" prefWidth="200.0" text="Label Example" textFill="#ae2c37">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="label6" layoutX="1053.0" layoutY="367.0" prefHeight="70.0" prefWidth="200.0" text="Label Example" textFill="#ae2c37">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
