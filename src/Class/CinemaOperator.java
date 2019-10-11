@@ -88,6 +88,7 @@ public class CinemaOperator {
         theater6.addRound(new Round(theater6, movie2, "21:00"));
 
     }
+
     private static CinemaOperator cinemaInstance;
     public static synchronized CinemaOperator getInstance(){
         if(cinemaInstance == null){
@@ -95,7 +96,6 @@ public class CinemaOperator {
         }
         return cinemaInstance;
     }
-
 
     public Movie getMovie1() {
         return movie1;

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TheaterRoundSelectController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0">
+         <image>
+            <Image url="@../image/background2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="moviePoster" fitHeight="563.0" fitWidth="408.0" layoutX="100.0" layoutY="124.0">
+         <image>
+            <Image url="@../image/image_poster/ComingSoon.jpg" />
+         </image>
+      </ImageView>
+      <Text fx:id="textTitleEn" fill="#922b21" layoutX="172.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title English">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="594.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="หมวดหมู่">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="textGenre" fill="#f1c40f" layoutX="618.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="แสดงหมวดหมู่">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="876.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ความยาว">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1063.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="วันที่เข้าฉาย">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="textLength" fill="#922b21" layoutX="901.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="แสดงความยาว">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="textReleaseDate" fill="#f1c40f" layoutX="1089.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="แสดงวันที่เข้าฉาย">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="textTitleTh" fill="#922b21" layoutX="189.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ชื่อเรื่องไทย">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <GridPane fx:id="rateSystemGridPane" layoutX="198.0" layoutY="67.0" prefHeight="35.0" prefWidth="408.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <GridPane fx:id="roundGridPane" layoutX="675.0" layoutY="124.0" prefHeight="563.0" prefWidth="483.0" style="-fx-background-color: #454545;">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="150.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text fx:id="theaterName1" fill="#2ecc71" strokeType="OUTSIDE" strokeWidth="0.0" text="Theater 1">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="thearterRound1" fill="#f1c40f" strokeType="OUTSIDE" strokeWidth="0.0" text="Round" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="thearterRound2" fill="#f1c40f" strokeType="OUTSIDE" strokeWidth="0.0" text="Round" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="thearterRound3" fill="#f1c40f" strokeType="OUTSIDE" strokeWidth="0.0" text="Round" GridPane.rowIndex="7">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="thearterRound4" fill="#f1c40f" strokeType="OUTSIDE" strokeWidth="0.0" text="Round" GridPane.rowIndex="10">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="thearterRound5" fill="#f1c40f" strokeType="OUTSIDE" strokeWidth="0.0" text="Round" GridPane.rowIndex="13">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="thearterRound6" fill="#f1c40f" strokeType="OUTSIDE" strokeWidth="0.0" text="Round" GridPane.rowIndex="16">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="theaterName2" fill="#2ecc71" strokeType="OUTSIDE" strokeWidth="0.0" text="Theater 2" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="theaterName3" fill="#2ecc71" strokeType="OUTSIDE" strokeWidth="0.0" text="Theater 3" GridPane.rowIndex="6">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="theaterName4" fill="#2ecc71" strokeType="OUTSIDE" strokeWidth="0.0" text="Theater 4" GridPane.rowIndex="9">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="theaterName5" fill="#2ecc71" strokeType="OUTSIDE" strokeWidth="0.0" text="Theater 5" GridPane.rowIndex="12">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="theaterName6" fill="#2ecc71" strokeType="OUTSIDE" strokeWidth="0.0" text="Theater 6" GridPane.rowIndex="15">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="35.0" fitWidth="63.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../image/image_detail/4k.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="63.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <image>
+                  <Image url="@../image/image_detail/4k.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="67.0" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../image/image_detail/digital.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="63.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <image>
+                  <Image url="@../image/image_detail/3d.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
+               <image>
+                  <Image url="@../image/image_detail/imax-digital.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="15">
+               <image>
+                  <Image url="@../image/image_detail/4dx.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <Text fill="WHITE" layoutX="5.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="เรทผู้ชม / ระบบฉาย">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

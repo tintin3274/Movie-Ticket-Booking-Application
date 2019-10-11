@@ -17,6 +17,9 @@ import java.util.*;
 
 public class SeatSelectController {
     private Round round;
+    private int amountNormal;
+    private int amountHoneymoon;
+    private double sumPrice;
 
     HashSet<Button> buttonsList;
     ArrayList<String> seatsSelect;
@@ -29,6 +32,9 @@ public class SeatSelectController {
     @FXML Text seatsSelectDisplay;
 
     @FXML public void initialize() {
+        sumPrice = 0;
+        amountNormal = 0;
+        amountHoneymoon = 0;
         buttonsList = new HashSet<>();
         seatsSelect = new ArrayList<>();
         Platform.runLater(new Runnable() {
@@ -67,7 +73,7 @@ public class SeatSelectController {
                                 button[j][i].setStyle("-fx-background-image: url('/image/seat-2-booked.png');-fx-background-size: 44 30;-fx-background-position: center center");
                             }
                         }
-                        button[j][i].setOnAction(event -> handleChairBtn(event));
+                        button[j][i].setOnAction(event -> handleSeatBtn(event));
                         chairGridPane.add(button[j][i], i, j, 1, 1);
                     }
                 }
@@ -85,7 +91,7 @@ public class SeatSelectController {
         }
     }
 
-    @FXML public void handleChairBtn(ActionEvent e) {
+    @FXML public void handleSeatBtn(ActionEvent e) {
         Button b = (Button) e.getSource();
         if(!seatsList.get(b.getId()).isBooked()){
             if(!seatsSelect.contains(b.getId()) && !buttonsList.contains(b)){
@@ -97,6 +103,10 @@ public class SeatSelectController {
                 else{
                     b.setStyle("-fx-background-image: url('/image/seat-3-select.png');-fx-background-size: 44 30;-fx-background-position: center center");
                 }
+
+                sumPrice += seatsList.get(b.getId()).getPrice();
+                if(seatsList.get(b.getId()).getType() == "Normal") amountNormal++;
+                else if(seatsList.get(b.getId()).getType() == "Honeymoon") amountHoneymoon++;
             }
             else{
                 seatsSelect.remove(b.getId());
@@ -107,10 +117,14 @@ public class SeatSelectController {
                 else{
                     b.setStyle("-fx-background-image: url('/image/seat-3.png');-fx-background-size: 44 30;-fx-background-position: center center");
                 }
+                sumPrice -= seatsList.get(b.getId()).getPrice();
+                if(seatsList.get(b.getId()).getType() == "Normal") amountNormal--;
+                else if(seatsList.get(b.getId()).getType() == "Honeymoon") amountHoneymoon--;
             }
         }
         Collections.sort(seatsSelect);
         seatsSelectDisplay.setText(seatsSelect.toString());
+        System.out.println("Normal: "+amountNormal+"\nHoneymoon: "+amountHoneymoon+"\nPrice: "+sumPrice+"\n");
     }
 
     @FXML public void handleConfirmBtn(ActionEvent event) {
