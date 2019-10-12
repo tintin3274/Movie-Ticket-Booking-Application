@@ -2,9 +2,11 @@ package Controller;
 
 import Class.*;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -82,6 +84,19 @@ public class MovieSelectController {
             case "moviePoster5": theaterRoundSelectController.setMovie(movie5); break;
             case "moviePoster6": theaterRoundSelectController.setMovie(movie6); break;
         }
+        stage.show();
+    }
+
+    @FXML public void handleLogoutButton(ActionEvent event){
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/login.fxml"));
+        try {
+            stage.setScene(new Scene(loader.load(), 1280, 720));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        cinema.logoutAccount();
         stage.show();
     }
 

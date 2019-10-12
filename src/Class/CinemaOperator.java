@@ -3,6 +3,7 @@ package Class;
 import java.time.LocalDate;
 
 public class CinemaOperator {
+    private Account account;
     private Movie movie1, movie2, movie3, movie4, movie5, movie6;
     private Theater theater1, theater2, theater3, theater4, theater5, theater6;
     private CinemaOperator(){
@@ -95,6 +96,19 @@ public class CinemaOperator {
             cinemaInstance = new CinemaOperator();
         }
         return cinemaInstance;
+    }
+
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public void logoutAccount() {
+        this.account = null;
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     public Movie getMovie1() {

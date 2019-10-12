@@ -5,12 +5,14 @@ public class Seat {
     private String type;
     private double price;
     private boolean booked;
+    private Account account;
 
     public Seat(String number, String type, double price) {
         this.number = number;
         this.type = type;
         this.price = price;
         this.booked = false;
+        this.account = null;
     }
 
     public String getNumber() {
@@ -29,7 +31,8 @@ public class Seat {
         return booked;
     }
 
-    public void setBooked(){
+    public void setBooked(Account account){
         booked = true;
+        this.account = account;
     }
 }

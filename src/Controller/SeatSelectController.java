@@ -12,6 +12,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
@@ -85,9 +88,24 @@ public class SeatSelectController {
         this.round = round;
     }
 
-    public void confirmBooking(){
-        for(Button b:buttonsList){
-            seatsList.get(b.getId()).setBooked();
+    @FXML public void confirmBooking(){
+        File dir = new File("csvData");
+        if (!dir.exists()){
+            dir.mkdirs();
+        }
+        try {
+            File file = new File("csvData/BookingData.csv");
+            file.createNewFile();
+            FileWriter fileWriter = new FileWriter(file, true);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+            for(Button b:buttonsList){
+                seatsList.get(b.getId()).setBooked(cinema.getAccount());
+                writer.write(cinema.getAccount().getUsername()+","+round.getTheater().getName()+","+round.getMovie().getNameEn()+","+round.getTime()+","+b.getId());
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

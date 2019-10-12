@@ -6,7 +6,6 @@ public class AccountsManage {
     private HashMap<String, Account> accountHashMap = new HashMap<String, Account>();
 
     private AccountsManage(){
-        createAccount("test", "1234", "erf@h.com", "sdfsdf", "sdfsdf");
     }
 
     private static AccountsManage accountsManageInstance;
@@ -33,5 +32,9 @@ public class AccountsManage {
 
     public boolean haveAccountAvailable(String username){
         return accountHashMap.keySet().contains(username);
+    }
+
+    public Account getAccount(String username){
+        return accountHashMap.get(username);
     }
 }

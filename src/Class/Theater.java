@@ -8,6 +8,7 @@ public class Theater {
     private String seatType;
     private ArrayList<Round> roundsList = new ArrayList<>();
 
+
     public Theater(String name, String systemType, String seatType) {
         this.name = name;
         this.systemType = systemType;
