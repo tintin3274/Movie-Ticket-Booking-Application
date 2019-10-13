@@ -47,33 +47,43 @@ public class SeatSelectController {
                 char alphabet = 65+14;
                 for (int i = 0; i < 20; i++) {
                     for (int j = 0; j < 15; j++) {
+                        Seat seat = seatsList.get(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1));
                         button[j][i] = new Button();
                         button[j][i].setMaxSize(44, 30);
                         button[j][i].setId(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1));
                         if(round.getTheater().getSeatType().equals("Mix")){
                             if(j>9){
-                                if(!seatsList.get(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1)).isBooked()){
+                                if(!seat.isBooked()){
                                     button[j][i].setStyle("-fx-background-image: url('/image/seat-3.png');-fx-background-size: 44 30;-fx-background-position: center center");
                                 }
                                 else{
                                     button[j][i].setStyle("-fx-background-image: url('/image/seat-3-booked.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                    if(seat.getAccount() == cinema.getAccount()) {
+                                        button[j][i].setStyle("-fx-background-image: url('/image/seat-3-owner.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                    }
                                 }
                             }
                             else {
-                                if(!seatsList.get(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1)).isBooked()){
+                                if(!seat.isBooked()){
                                     button[j][i].setStyle("-fx-background-image: url('/image/seat-2.png');-fx-background-size: 44 30;-fx-background-position: center center");
                                 }
                                 else{
                                     button[j][i].setStyle("-fx-background-image: url('/image/seat-2-booked.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                    if(seat.getAccount() == cinema.getAccount()) {
+                                        button[j][i].setStyle("-fx-background-image: url('/image/seat-2-owner.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                    }
                                 }
                             }
                         }
                         else {
-                            if(!seatsList.get(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1)).isBooked()){
+                            if(!seat.isBooked()){
                                 button[j][i].setStyle("-fx-background-image: url('/image/seat-2.png');-fx-background-size: 44 30;-fx-background-position: center center");
                             }
                             else{
                                 button[j][i].setStyle("-fx-background-image: url('/image/seat-2-booked.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                if(seat.getAccount() == cinema.getAccount()) {
+                                    button[j][i].setStyle("-fx-background-image: url('/image/seat-2-owner.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                }
                             }
                         }
                         button[j][i].setOnAction(event -> handleSeatBtn(event));

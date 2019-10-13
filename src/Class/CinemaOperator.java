@@ -10,7 +10,7 @@ public class CinemaOperator {
         movie1 = new Movie("It Chapter Two", "โผล่จากนรก 2",
                 "น 15+", "สยองขวัญ / ระทึกขวัญ", "/image/image_poster/ItChapterTwo.jpg", 169, LocalDate.parse("2019-09-05"));
         movie2 = new Movie("47 Meters Down Uncaged", "47 ดิ่งลึกสุดนรก",
-                "น 15+", "ผจญภัย / ชีวิต / สยองขวัญ", "/image/image_poster/47 MetersDownUncaged.jpg", 90, LocalDate.parse("2019-08-09"));
+                "น 15+", "ผจญภัย / ชีวิต / สยองขวัญ", "/image/image_poster/47MetersDownUncaged.jpg", 90, LocalDate.parse("2019-08-09"));
         movie3 = new Movie("Angel Has Fallen", "ผ่ายุทธการ ดับแผนอหังการ์",
                 "น 15+", "แอ็คชัน / ชีวิต / ระทึกขวัญ", "/image/image_poster/AngelHasFallen.jpg", 120, LocalDate.parse("2019-08-22"));
         movie4 = new Movie("Weathering with You", "ฤดูฝัน ฉันมีเธอ",
@@ -101,6 +101,30 @@ public class CinemaOperator {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public void setMovie1(Movie movie1) {
+        this.movie1 = movie1;
+    }
+
+    public void setMovie2(Movie movie2) {
+        this.movie2 = movie2;
+    }
+
+    public void setMovie3(Movie movie3) {
+        this.movie3 = movie3;
+    }
+
+    public void setMovie4(Movie movie4) {
+        this.movie4 = movie4;
+    }
+
+    public void setMovie5(Movie movie5) {
+        this.movie5 = movie5;
+    }
+
+    public void setMovie6(Movie movie6) {
+        this.movie6 = movie6;
     }
 
     public void logoutAccount() {

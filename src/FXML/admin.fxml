@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminController">
+   <children>
+      <TextField fx:id="nameEnTextField" layoutX="760.0" layoutY="40.0" prefHeight="35.0" prefWidth="450.0">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <Label layoutX="621.0" layoutY="46.0" text="ชื่อเรื่อง ภาษาอังกฤษ :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameThTextField" layoutX="760.0" layoutY="90.0" prefHeight="35.0" prefWidth="450.0">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <Label layoutX="640.0" layoutY="95.0" text="ชื่อเรื่อง ภาษาไทย :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="genreTextField" layoutX="760.0" layoutY="140.0" prefHeight="35.0" prefWidth="450.0">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <Label layoutX="692.0" layoutY="145.0" text="หมวดหมู่ :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="descriptionTextArea" layoutX="760.0" layoutY="190.0" prefHeight="150.0" prefWidth="450.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="703.0" layoutY="190.0" text="เรื่องย่อ :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="760.0" layoutY="360.0" text="นาที">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <graphic>
+            <TextField fx:id="lengthTextField" prefHeight="35.0" prefWidth="100.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+         </graphic>
+      </Label>
+      <Label layoutX="692.0" layoutY="365.0" text="ความยาว :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="releaseDateDatePicker" layoutX="1055.0" layoutY="360.0" prefHeight="35.0" prefWidth="155.0" />
+      <Label layoutX="972.0" layoutY="365.0" text="วันที่เข้าฉาย :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <GridPane hgap="142.0" layoutX="1062.0" layoutY="410.0" prefHeight="200.0" prefWidth="142.0" vgap="200.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fx:id="posterImageView" fitHeight="200.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/image_poster/ComingSoon.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <Label layoutX="994.0" layoutY="416.0" text="โปสเตอร์ :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="movieTable" layoutX="42.0" layoutY="40.0" onMouseClicked="#handleMovieTableClicked" prefHeight="200.0" prefWidth="500.0">
+        <columns>
+          <TableColumn fx:id="nameEnTable" prefWidth="130.0" resizable="false" text="ชื่อเรื่อง ภาษาอังกฤษ" />
+          <TableColumn fx:id="nameThTable" minWidth="2.0" prefWidth="130.0" resizable="false" text="ชื่อเรื่อง ภาษาไทย" />
+            <TableColumn fx:id="rateTable" minWidth="2.0" prefWidth="70.0" resizable="false" text="เรทผู้ชม" />
+            <TableColumn fx:id="lengthTable" minWidth="2.0" prefWidth="70.0" resizable="false" text="ความยาว" />
+            <TableColumn fx:id="releaseDateTable" minWidth="2.0" prefWidth="100.0" resizable="false" text="วันที่เข้าฉาย" />
+        </columns>
+      </TableView>
+      <TableView fx:id="roundTable" layoutX="42.0" layoutY="329.0" onMouseClicked="#handleRoundTableClicked" prefHeight="200.0" prefWidth="100.0">
+        <columns>
+          <TableColumn fx:id="timeRoundTable" prefWidth="100.0" resizable="false" text="เวลาฉาย" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="rateComboBox" layoutX="761.0" layoutY="410.0" prefHeight="35.0" prefWidth="100.0" />
+      <Label layoutX="700.0" layoutY="415.0" text="เรทผู้ชม :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView layoutX="761.0" layoutY="465.0">
+         <image>
+            <Image url="@../image/image_detail/digital.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="37.0" fitWidth="67.0" layoutX="761.0" layoutY="510.0">
+         <image>
+            <Image url="@../image/image_detail/4k.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="37.0" fitWidth="67.0" layoutX="761.0" layoutY="555.0">
+         <image>
+            <Image url="@../image/image_detail/3d.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="761.0" layoutY="600.0">
+         <image>
+            <Image url="@../image/image_detail/imax-digital.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="761.0" layoutY="645.0">
+         <image>
+            <Image url="@../image/image_detail/4dx.png" />
+         </image>
+      </ImageView>
+      <CheckBox fx:id="systemType1CheckBox" layoutX="837.0" layoutY="470.0" mnemonicParsing="false" text="Digital 2D">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="systemType2CheckBox" layoutX="837.0" layoutY="516.0" mnemonicParsing="false" text="Digital 4K">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="systemType3CheckBox" layoutX="837.0" layoutY="561.0" mnemonicParsing="false" text="Digital 3D">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="systemType4CheckBox" layoutX="837.0" layoutY="605.0" mnemonicParsing="false" text="IMAX Digital 2D">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="systemType5CheckBox" layoutX="837.0" layoutY="650.0" mnemonicParsing="false" text="4DX">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="692.0" layoutY="470.0" text="ระบบฉาย :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="browseButton" layoutX="996.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleBrowseButton" prefHeight="25.0" prefWidth="57.0" text="เลือก" />
+      <Button fx:id="addMovieButton" layoutX="1076.0" layoutY="627.0" mnemonicParsing="false" onAction="#handleAddMovieButton" prefHeight="35.0" prefWidth="115.0" text="เพิ่มภาพยนตร์">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="theaterComboBox" layoutX="42.0" layoutY="285.0" onAction="#handleTheaterComboBox" prefHeight="35.0" prefWidth="100.0" />
+      <Label layoutX="307.0" layoutY="290.0" text="เพิ่มรอบฉายภาพยนตร์">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="addRoundButton" layoutX="307.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleAddRoundButton" prefHeight="35.0" prefWidth="100.0" text="เพิ่มรอบฉาย">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="addRoundTimeTextField" layoutX="308.0" layoutY="399.0" prefHeight="37.0" prefWidth="100.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="238.0" layoutY="405.0" text="เวลาฉาย :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="addRoundTheaterLabel" layoutX="309.0" layoutY="324.0" text="Theater">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="211.0" layoutY="324.0" text="โรงภาพยนตร์ :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="addRoundMovieLabel" layoutX="309.0" layoutY="362.0" text="Title English">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="362.0" text="ภาพยนตร์ :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="45.0" layoutY="575.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Movie">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="155.0" layoutY="575.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Button">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="265.0" layoutY="575.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Button">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="45.0" layoutY="622.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Button">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="155.0" layoutY="622.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Button">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="265.0" layoutY="622.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Button">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

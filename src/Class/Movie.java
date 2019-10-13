@@ -10,11 +10,12 @@ public class Movie {
     private String rate;
     private String genre;
     private String imgPosterPath;
+    private String description;
     private int length;
     private LocalDate releaseDate;
     private Set<String> systemType = new LinkedHashSet<>();
 
-    public Movie(String nameEn, String nameTh, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate) {
+    public Movie(String nameEn, String nameTh, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate, String description) {
         this.nameEn = nameEn;
         this.nameTh = nameTh;
         this.rate = rate;
@@ -22,6 +23,11 @@ public class Movie {
         this.imgPosterPath = imgPosterPath;
         this.length = length;
         this.releaseDate = releaseDate;
+        this.description = description;
+    }
+
+    public Movie(String nameEn, String nameTh, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate) {
+        this(nameEn, nameTh, rate, genre, imgPosterPath, length, releaseDate, "");
     }
 
     public String getNameEn() {
@@ -44,6 +50,10 @@ public class Movie {
         return imgPosterPath;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public int getLength() {
         return length;
     }
@@ -60,8 +70,22 @@ public class Movie {
         return systemType;
     }
 
+    public String showShortDetail() {
+        return nameEn+"\n"+nameTh+"\n"+"Release Date: "+releaseDate;
+    }
+
     @Override
     public String toString() {
-        return nameEn+"\n"+nameTh+"\n"+"Release Date: "+releaseDate;
+        return "Movie{" +
+                "nameEn='" + nameEn + '\'' +
+                ", nameTh='" + nameTh + '\'' +
+                ", rate='" + rate + '\'' +
+                ", genre='" + genre + '\'' +
+                ", imgPosterPath='" + imgPosterPath + '\'' +
+                ", description='" + description + '\'' +
+                ", length=" + length +
+                ", releaseDate=" + releaseDate +
+                ", systemType=" + systemType +
+                '}';
     }
 }

@@ -41,13 +41,12 @@ public class MovieSelectController {
         moviePoster4.setImage(new Image(movie4.getImgPosterPath()));
         moviePoster5.setImage(new Image(movie5.getImgPosterPath()));
         moviePoster6.setImage(new Image(movie6.getImgPosterPath()));
-        label1.setText(movie1.toString());
-        label2.setText(movie2.toString());
-        label3.setText(movie3.toString());
-        label4.setText(movie4.toString());
-        label5.setText(movie5.toString());
-        label6.setText(movie6.toString());
-
+        label1.setText(movie1.showShortDetail());
+        label2.setText(movie2.showShortDetail());
+        label3.setText(movie3.showShortDetail());
+        label4.setText(movie4.showShortDetail());
+        label5.setText(movie5.showShortDetail());
+        label6.setText(movie6.showShortDetail());
     }
 
     @FXML public void mouseEnterImage(MouseEvent event){

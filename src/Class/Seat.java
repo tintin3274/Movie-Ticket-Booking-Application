@@ -15,6 +15,11 @@ public class Seat {
         this.account = null;
     }
 
+    public void setBooked(Account account){
+        booked = true;
+        this.account = account;
+    }
+
     public String getNumber() {
         return number;
     }
@@ -31,8 +36,7 @@ public class Seat {
         return booked;
     }
 
-    public void setBooked(Account account){
-        booked = true;
-        this.account = account;
+    public Account getAccount() {
+        return account;
     }
 }
