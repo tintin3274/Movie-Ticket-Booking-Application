@@ -2,7 +2,6 @@ package Controller;
 
 import Class.*;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +15,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
+    private static boolean LOAD_FIRST_TIME = true;
+
     @FXML TextField usernameTextField;
     @FXML PasswordField passwordField;
     @FXML Button loginButton, signUpButton;
@@ -24,16 +25,23 @@ public class LoginController {
     AccountsManage accountsManage = AccountsManage.getInstance();
     CinemaOperator cinema = CinemaOperator.getInstance();
 
+
     @FXML public void initialize(){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                LoadAccountData loadAccountData = new LoadAccountData();
-                LoadBookingData loadBookingData = new LoadBookingData();
-                loadAccountData.readAccountData();
-                loadBookingData.readBookingData();
-            }
-        });
+        if(LOAD_FIRST_TIME){
+            LoadAccountData loadAccountData = new LoadAccountData();
+            LoadBookingData loadBookingData = new LoadBookingData();
+            LoadMovieData loadMovieData = new LoadMovieData();
+            LoadMovieShowTime loadMovieShowTime = new LoadMovieShowTime();
+            LoadShowTime loadShowTime = new LoadShowTime();
+
+            loadAccountData.readAccountData();
+            loadMovieData.readMovieData();
+            loadMovieShowTime.readMovieShowTimeData();
+            loadShowTime.readShowTimeData();
+            loadBookingData.readBookingData();
+
+            LOAD_FIRST_TIME = false;
+        }
     }
 
     @FXML public void handleLoginButton(ActionEvent event){

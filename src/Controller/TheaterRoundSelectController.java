@@ -176,4 +176,16 @@ public class TheaterRoundSelectController {
         }
         stage.show();
     }
+
+    @FXML public void loadMovieSelectPage(ActionEvent event){
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/movie_select.fxml"));
+        try {
+            stage.setScene(new Scene(loader.load(), 1280, 720));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.show();
+    }
 }

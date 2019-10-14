@@ -2,6 +2,7 @@ package Controller;
 
 import Class.*;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ import java.time.LocalDate;
 public class MovieSelectController {
     @FXML Label label1, label2, label3, label4, label5, label6;
     @FXML ImageView moviePoster1, moviePoster2, moviePoster3, moviePoster4, moviePoster5, moviePoster6;
+    @FXML Button adminSettingButton;
 
     CinemaOperator cinema = CinemaOperator.getInstance();
 
@@ -32,21 +34,36 @@ public class MovieSelectController {
     private Movie movie5 = cinema.getMovie5();
     private Movie movie6 = cinema.getMovie6();
 
+    private Movie movie0 = new Movie("<<Coming Soon>>","<<เร็ว ๆ นี้>>","-","<<->>","/image/image_poster/ComingSoon.jpg",0, null,"<<...>>");
 
     @FXML
     public void initialize() {
-        moviePoster1.setImage(new Image(movie1.getImgPosterPath()));
-        moviePoster2.setImage(new Image(movie2.getImgPosterPath()));
-        moviePoster3.setImage(new Image(movie3.getImgPosterPath()));
-        moviePoster4.setImage(new Image(movie4.getImgPosterPath()));
-        moviePoster5.setImage(new Image(movie5.getImgPosterPath()));
-        moviePoster6.setImage(new Image(movie6.getImgPosterPath()));
-        label1.setText(movie1.showShortDetail());
-        label2.setText(movie2.showShortDetail());
-        label3.setText(movie3.showShortDetail());
-        label4.setText(movie4.showShortDetail());
-        label5.setText(movie5.showShortDetail());
-        label6.setText(movie6.showShortDetail());
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if(movie1 == null) {movie1 = movie0; cinema.setMovie1(movie0);}
+                if(movie2 == null) {movie2 = movie0; cinema.setMovie2(movie0);}
+                if(movie3 == null) {movie3 = movie0; cinema.setMovie3(movie0);}
+                if(movie4 == null) {movie4 = movie0; cinema.setMovie4(movie0);}
+                if(movie5 == null) {movie5 = movie0; cinema.setMovie5(movie0);}
+                if(movie6 == null) {movie6 = movie0; cinema.setMovie6(movie0);}
+
+                moviePoster1.setImage(new Image(movie1.getImgPosterPath()));
+                moviePoster2.setImage(new Image(movie2.getImgPosterPath()));
+                moviePoster3.setImage(new Image(movie3.getImgPosterPath()));
+                moviePoster4.setImage(new Image(movie4.getImgPosterPath()));
+                moviePoster5.setImage(new Image(movie5.getImgPosterPath()));
+                moviePoster6.setImage(new Image(movie6.getImgPosterPath()));
+                label1.setText(movie1.showShortDetail());
+                label2.setText(movie2.showShortDetail());
+                label3.setText(movie3.showShortDetail());
+                label4.setText(movie4.showShortDetail());
+                label5.setText(movie5.showShortDetail());
+                label6.setText(movie6.showShortDetail());
+
+                adminSettingButton.setVisible((cinema.getAccount().getUsername().equals("admin")));
+            }
+        });
     }
 
     @FXML public void mouseEnterImage(MouseEvent event){
@@ -99,4 +116,15 @@ public class MovieSelectController {
         stage.show();
     }
 
+    @FXML public void handleAdminSettingButton(ActionEvent event){
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/admin.fxml"));
+        try {
+            stage.setScene(new Scene(loader.load(), 1280, 720));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.show();
+    }
 }

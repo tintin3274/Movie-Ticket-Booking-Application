@@ -1,20 +1,14 @@
 package Class;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 
-public class LoadBookingData {
-    private AccountsManage accountsManage = AccountsManage.getInstance();
+public class LoadShowTime {
     private CinemaOperator cinema = CinemaOperator.getInstance();
-    private Account account;
+    private MoviesManage moviesManage = MoviesManage.getInstance();
     private Theater theater;
-    private ArrayList<Round> roundsList;
-    private Round round;
-    private HashMap<String, Seat> seatsList;
-    private Seat seat;
+    private Movie movie;
 
-    public void readBookingData(){
+    public void readShowTimeData(){
         String line;
         String[] data;
         File dir = new File("csvData");
@@ -22,13 +16,14 @@ public class LoadBookingData {
             dir.mkdirs();
         }
         try {
-            File file = new File("csvData/BookingData.csv");
+            File file = new File("csvData/ShowTimeData.csv");
             FileReader fileReader = new FileReader(file);
             BufferedReader reader = new BufferedReader(fileReader);
+
             while ((line = reader.readLine()) != null){
                 data = line.split(",");
-                account = accountsManage.getAccount(data[0]);
-                switch (data[1]){
+
+                switch (data[0]){
                     case "Theater1": theater = cinema.getTheater1(); break;
                     case "Theater2": theater = cinema.getTheater2(); break;
                     case "Theater3": theater = cinema.getTheater3(); break;
@@ -36,14 +31,15 @@ public class LoadBookingData {
                     case "Theater5": theater = cinema.getTheater5(); break;
                     case "Theater6": theater = cinema.getTheater6(); break;
                 }
-                roundsList = theater.getRoundsList();
-                round = null;
-                for(Round r : roundsList){
-                    if(r.getTime().equals(data[3])) round = r;
+
+                for(Movie m : moviesManage.getMovieHashSet()){
+                    if(data[1].equals(m.getNameEn())){
+                        movie = m;
+                        break;
+                    }
                 }
-                seatsList = round.getSeatsList();
-                seat = seatsList.get(data[4]);
-                if(account!=null && round!=null && round.getMovie().getNameEn().equals(data[2]) && !seat.isBooked()) seat.setBooked(account);
+
+                theater.addRound(new Round(theater, movie, data[2]));
             }
             reader.close();
         } catch (FileNotFoundException e) {
@@ -53,4 +49,3 @@ public class LoadBookingData {
         }
     }
 }
-

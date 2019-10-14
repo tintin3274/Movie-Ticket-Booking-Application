@@ -221,32 +221,18 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="45.0" layoutY="575.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Movie">
+      <ComboBox fx:id="movieComboBox" layoutX="42.0" layoutY="556.0" onAction="#handleMovieComboBox" prefHeight="35.0" prefWidth="100.0" />
+      <Button fx:id="setMovieButton" layoutX="308.0" layoutY="555.0" mnemonicParsing="false" onAction="#handleSetMovieButton" prefHeight="37.0" prefWidth="131.0" text="กำหนดภาพยนตร์">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="155.0" layoutY="575.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Button">
+      <Button layoutX="556.0" layoutY="632.0" mnemonicParsing="false" onAction="#loadMovieSelectPage" prefHeight="37.0" prefWidth="131.0" text="หน้าหลัก">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="265.0" layoutY="575.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Button">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button layoutX="45.0" layoutY="622.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Button">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button layoutX="155.0" layoutY="622.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Button">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button layoutX="265.0" layoutY="622.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Button">
+      <Button layoutX="308.0" layoutY="644.0" mnemonicParsing="false" onAction="#exportAll" prefHeight="37.0" prefWidth="131.0" text="Export All">
          <font>
             <Font size="16.0" />
          </font>
