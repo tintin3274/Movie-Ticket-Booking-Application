@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ticketAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1920.0" prefWidth="1080.0" style="-fx-background-color: #a8a8a8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TicketController">
+   <children>
+      <Label fx:id="nameLabel" layoutX="178.0" layoutY="1736.0" text="Fristname Lastname">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="posterImageView" fitHeight="1000.0" fitWidth="720.0" layoutX="178.0" layoutY="70.0">
+         <image>
+            <Image url="@../image/image_poster/ComingSoon.jpg" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="178.0" layoutY="1091.0" prefHeight="550.0" prefWidth="700.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="340.0" minWidth="10.0" prefWidth="240.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.0" minWidth="10.0" prefWidth="460.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="133.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="75.0" prefWidth="240.0" text="MOVIE TITLE" GridPane.rowIndex="1">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label prefHeight="75.0" prefWidth="240.0" text="DATE" GridPane.rowIndex="2">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label prefHeight="75.0" prefWidth="240.0" text="SHOWTIME" GridPane.rowIndex="3">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label prefHeight="75.0" prefWidth="240.0" text="SEAT No." GridPane.rowIndex="5">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Label prefHeight="75.0" prefWidth="460.0" text="Main Cineplex" GridPane.columnIndex="1">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label prefHeight="75.0" prefWidth="240.0" text="BRANCH">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="titleLabel" prefHeight="75.0" prefWidth="460.0" text="Title English" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="dateLabel" prefHeight="75.0" prefWidth="460.0" text="dd-MM-yyyy" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="showtimeLabel" prefHeight="75.0" prefWidth="460.0" text="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="seatNoLabel" prefHeight="175.0" prefWidth="460.0" text="AXX, BXX, CXX, DXX, EXX, FXX, GXX, HXX, IXX, JXX, KXX, MXX" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label prefHeight="75.0" prefWidth="240.0" text="THEATER" GridPane.rowIndex="4">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="theaterLabel" prefHeight="75.0" prefWidth="460.0" text="Theater X" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <Label fx:id="priceLabel" layoutX="178.0" layoutY="1798.0" text="PRICE Vat Included : XXX baht">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

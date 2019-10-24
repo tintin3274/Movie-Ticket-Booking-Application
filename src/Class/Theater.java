@@ -1,6 +1,7 @@
 package Class;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Theater {
     private String name;
@@ -17,6 +18,12 @@ public class Theater {
 
     public void addRound(Round round){
         roundsList.add(round);
+        roundsList.sort(new Comparator<Round>() {
+            @Override
+            public int compare(Round o1, Round o2) {
+                return o1.getTime().compareTo(o2.getTime());
+            }
+        });
     }
 
 

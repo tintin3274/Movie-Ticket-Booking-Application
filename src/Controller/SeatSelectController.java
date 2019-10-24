@@ -4,10 +4,13 @@ import Class.*;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -22,20 +25,21 @@ public class SeatSelectController {
     private Round round;
     private int amountNormal;
     private int amountHoneymoon;
-    private double sumPrice;
+    private double price;
+    private String seatNo;
 
     HashSet<Button> buttonsList;
     ArrayList<String> seatsSelect;
     HashMap<String, Seat> seatsList;
     Button button[][] = new Button[15][20];
-    CinemaOperator cinema = CinemaOperator.getInstance();
+    CinemaManage cinema = CinemaManage.getInstance();
 
     @FXML GridPane chairGridPane;
     @FXML Button confirm;
     @FXML Text seatsSelectDisplay;
 
     @FXML public void initialize() {
-        sumPrice = 0;
+        price = 0;
         amountNormal = 0;
         amountHoneymoon = 0;
         buttonsList = new HashSet<>();
@@ -49,45 +53,62 @@ public class SeatSelectController {
                     for (int j = 0; j < 15; j++) {
                         Seat seat = seatsList.get(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1));
                         button[j][i] = new Button();
-                        button[j][i].setMaxSize(44, 30);
-                        button[j][i].setId(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1));
-                        if(round.getTheater().getSeatType().equals("Mix")){
-                            if(j>9){
-                                if(!seat.isBooked()){
-                                    button[j][i].setStyle("-fx-background-image: url('/image/seat-3.png');-fx-background-size: 44 30;-fx-background-position: center center");
-                                }
-                                else{
-                                    button[j][i].setStyle("-fx-background-image: url('/image/seat-3-booked.png');-fx-background-size: 44 30;-fx-background-position: center center");
-                                    if(seat.getAccount() == cinema.getAccount()) {
-                                        button[j][i].setStyle("-fx-background-image: url('/image/seat-3-owner.png');-fx-background-size: 44 30;-fx-background-position: center center");
-                                    }
-                                }
-                            }
-                            else {
-                                if(!seat.isBooked()){
-                                    button[j][i].setStyle("-fx-background-image: url('/image/seat-2.png');-fx-background-size: 44 30;-fx-background-position: center center");
-                                }
-                                else{
-                                    button[j][i].setStyle("-fx-background-image: url('/image/seat-2-booked.png');-fx-background-size: 44 30;-fx-background-position: center center");
-                                    if(seat.getAccount() == cinema.getAccount()) {
-                                        button[j][i].setStyle("-fx-background-image: url('/image/seat-2-owner.png');-fx-background-size: 44 30;-fx-background-position: center center");
-                                    }
+                        Button b = button[j][i];
+                        b.setMaxSize(44, 30);
+                        b.setId(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1));
+
+                        ContextMenu contextMenu = new ContextMenu();
+                        MenuItem item1 = new MenuItem("Cancel Booking");
+                        item1.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                seat.cancelBooking();
+                                switch (seat.getType()){
+                                    case "Honeymoon" : b.setStyle("-fx-background-image: url('/image/seat-3.png');-fx-background-size: 44 30;-fx-background-position: center center"); break;
+                                    case "Normal" : b.setStyle("-fx-background-image: url('/image/seat-2.png');-fx-background-size: 44 30;-fx-background-position: center center"); break;
                                 }
                             }
-                        }
-                        else {
-                            if(!seat.isBooked()){
-                                button[j][i].setStyle("-fx-background-image: url('/image/seat-2.png');-fx-background-size: 44 30;-fx-background-position: center center");
-                            }
-                            else{
-                                button[j][i].setStyle("-fx-background-image: url('/image/seat-2-booked.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                        });
+
+                        contextMenu.getItems().add(item1);
+                        b.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
+                            @Override
+                            public void handle(ContextMenuEvent event) {
                                 if(seat.getAccount() == cinema.getAccount()) {
-                                    button[j][i].setStyle("-fx-background-image: url('/image/seat-2-owner.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                    contextMenu.show(b, event.getScreenX(), event.getScreenY());
                                 }
                             }
+                        });
+
+
+                        switch (seat.getType()){
+                            case "Honeymoon" : {
+                                if(!seat.isBooked()){
+                                    b.setStyle("-fx-background-image: url('/image/seat-3.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                }
+                                else if(seat.getAccount() == cinema.getAccount()){
+                                    b.setStyle("-fx-background-image: url('/image/seat-3-owner.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                }
+                                else{
+                                    b.setStyle("-fx-background-image: url('/image/seat-3-booked.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                }
+                                break;
+                            }
+                            case "Normal" : {
+                                if(!seat.isBooked()){
+                                    b.setStyle("-fx-background-image: url('/image/seat-2.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                }
+                                else if(seat.getAccount() == cinema.getAccount()){
+                                    b.setStyle("-fx-background-image: url('/image/seat-2-owner.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                }
+                                else{
+                                    b.setStyle("-fx-background-image: url('/image/seat-2-booked.png');-fx-background-size: 44 30;-fx-background-position: center center");
+                                }
+                                break;
+                            }
                         }
-                        button[j][i].setOnAction(event -> handleSeatBtn(event));
-                        chairGridPane.add(button[j][i], i, j, 1, 1);
+                        b.setOnAction(event -> handleSeatBtn(event));
+                        chairGridPane.add(b, i, j, 1, 1);
                     }
                 }
             }
@@ -109,7 +130,7 @@ public class SeatSelectController {
             FileWriter fileWriter = new FileWriter(file, true);
             BufferedWriter writer = new BufferedWriter(fileWriter);
             for(Button b:buttonsList){
-                seatsList.get(b.getId()).setBooked(cinema.getAccount());
+                seatsList.get(b.getId()).setBooking(cinema.getAccount());
                 writer.write(cinema.getAccount().getUsername()+","+round.getTheater().getName()+","+round.getMovie().getNameEn()+","+round.getTime()+","+b.getId());
                 writer.newLine();
             }
@@ -132,7 +153,7 @@ public class SeatSelectController {
                     b.setStyle("-fx-background-image: url('/image/seat-3-select.png');-fx-background-size: 44 30;-fx-background-position: center center");
                 }
 
-                sumPrice += seatsList.get(b.getId()).getPrice();
+                price += seatsList.get(b.getId()).getPrice();
                 if(seatsList.get(b.getId()).getType() == "Normal") amountNormal++;
                 else if(seatsList.get(b.getId()).getType() == "Honeymoon") amountHoneymoon++;
             }
@@ -145,27 +166,60 @@ public class SeatSelectController {
                 else{
                     b.setStyle("-fx-background-image: url('/image/seat-3.png');-fx-background-size: 44 30;-fx-background-position: center center");
                 }
-                sumPrice -= seatsList.get(b.getId()).getPrice();
+                price -= seatsList.get(b.getId()).getPrice();
                 if(seatsList.get(b.getId()).getType() == "Normal") amountNormal--;
                 else if(seatsList.get(b.getId()).getType() == "Honeymoon") amountHoneymoon--;
             }
         }
         Collections.sort(seatsSelect);
-        seatsSelectDisplay.setText(seatsSelect.toString());
-        System.out.println("Normal: "+amountNormal+"\nHoneymoon: "+amountHoneymoon+"\nPrice: "+sumPrice+"\n");
+        seatNo = seatsSelect.toString().replace("[", "").replace("]", "");
+        seatsSelectDisplay.setText(seatNo);
+        System.out.println("Normal: "+amountNormal+"\nHoneymoon: "+amountHoneymoon+"\nPrice: "+ price +"\n");
     }
 
     @FXML public void handleConfirmBtn(ActionEvent event) {
-        confirmBooking();
-        Button button = (Button) event.getSource();
-        Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/movie_select.fxml"));
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Booking");
+        alert.setHeaderText("Do you want to confirm booking of the selected seat?");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            confirmBooking();
+            generateTicket();
+
+            Button button = (Button) event.getSource();
+            Stage stage = (Stage) button.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/receipt.fxml"));
+            try {
+                stage.setScene(new Scene(loader.load(), 1280, 720));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ReceiptController receiptController = loader.getController();
+            receiptController.setRound(round);
+            receiptController.setSeatNo(seatNo);
+            receiptController.setPrice(price);
+            stage.show();
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
+    }
+
+    @FXML public void generateTicket(){
         try {
-            stage.setScene(new Scene(loader.load(), 1280, 720));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/ticket.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Ticket");
+            stage.setScene(new Scene(root, 1080, 1920));
+            TicketController ticketController = fxmlLoader.getController();
+            ticketController.setRound(round);
+            ticketController.setSeatNo(seatNo);
+            ticketController.setPrice(price);
+            //stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        MovieSelectController movieSelectController = loader.getController();
-        stage.show();
     }
 }

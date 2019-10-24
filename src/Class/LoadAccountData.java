@@ -14,7 +14,6 @@ public class LoadAccountData {
         }
         try {
             File file = new File("csvData/AccountData.csv");
-            file.createNewFile();
             FileReader fileReader = new FileReader(file);
             BufferedReader reader = new BufferedReader(fileReader);
             while ((line = reader.readLine()) != null){

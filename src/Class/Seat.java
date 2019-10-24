@@ -15,9 +15,14 @@ public class Seat {
         this.account = null;
     }
 
-    public void setBooked(Account account){
+    public void setBooking(Account account){
         booked = true;
         this.account = account;
+    }
+
+    public void cancelBooking(){
+        booked = false;
+        account = null;
     }
 
     public String getNumber() {

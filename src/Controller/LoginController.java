@@ -2,7 +2,6 @@ package Controller;
 
 import Class.*;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,24 +15,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
+
     @FXML TextField usernameTextField;
     @FXML PasswordField passwordField;
     @FXML Button loginButton, signUpButton;
     @FXML Text display;
 
     AccountsManage accountsManage = AccountsManage.getInstance();
-    CinemaOperator cinema = CinemaOperator.getInstance();
+    CinemaManage cinema = CinemaManage.getInstance();
+
 
     @FXML public void initialize(){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                LoadAccountData loadAccountData = new LoadAccountData();
-                LoadBookingData loadBookingData = new LoadBookingData();
-                loadAccountData.readAccountData();
-                loadBookingData.readBookingData();
-            }
-        });
+
     }
 
     @FXML public void handleLoginButton(ActionEvent event){
