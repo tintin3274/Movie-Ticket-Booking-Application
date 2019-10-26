@@ -3,16 +3,20 @@ package Controller;
 import Class.*;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArrayBase;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
@@ -23,6 +27,8 @@ import java.util.*;
 
 public class SeatSelectController {
     private Round round;
+    private Movie movie;
+    private Theater theater;
     private int amountNormal;
     private int amountHoneymoon;
     private double price;
@@ -35,8 +41,10 @@ public class SeatSelectController {
     CinemaManage cinema = CinemaManage.getInstance();
 
     @FXML GridPane chairGridPane;
+    @FXML GridPane rateSystemGridPane;
     @FXML Button confirm;
-    @FXML Text seatsSelectDisplay;
+    @FXML Label seatsSelectDisplay;
+    @FXML Label textTitleEn, textTitleTh, textGenre, textLength, textReleaseDate, theaterName, textPrice, priceNormal, priceHoneymoon;
 
     @FXML public void initialize() {
         price = 0;
@@ -44,9 +52,47 @@ public class SeatSelectController {
         amountHoneymoon = 0;
         buttonsList = new HashSet<>();
         seatsSelect = new ArrayList<>();
+        confirm.setDisable(seatsSelect.isEmpty());
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                movie = round.getMovie();
+                theater = round.getTheater();
+
+                textTitleEn.setText(movie.getNameEn());
+                textTitleTh.setText(movie.getNameTh());
+                textGenre.setText(movie.getGenre());
+                textLength.setText(movie.getLength()+" นาที");
+                textReleaseDate.setText(""+movie.getReleaseDate());
+                theaterName.setText(theater.getName()+" - Round "+round.getTime());
+                textPrice.setText("ราคารวม "+price+" บาท");
+                priceNormal.setText("Normal "+theater.getSeatPrice("Normal")+" บาท");
+                priceHoneymoon.setText("Honeymoon "+theater.getSeatPrice("Honeymoon")+" บาท");
+                ImageView image;
+                switch (movie.getRate()){
+                    case "ทั่วไป": image = new ImageView("/image/image_detail/rating_1.png");break;
+                    case "น 13+": image = new ImageView("/image/image_detail/rating_2.png");break;
+                    case "น 15+": image = new ImageView("/image/image_detail/rating_3.png");break;
+                    case "น 18+": image = new ImageView("/image/image_detail/rating_4.png");break;
+                    case "ฉ 20+": image = new ImageView("/image/image_detail/rating_5.png");break;
+                    default: image = new ImageView("/image/image_detail/rating_0.png");break;
+                }
+                image.setFitWidth(67);
+                image.setFitHeight(35);
+                rateSystemGridPane.add(image, 0,0);
+                switch (theater.getSystemType()){
+                    case "2D": image = new ImageView("/image/image_detail/digital.png");break;
+                    case "4K": image = new ImageView("/image/image_detail/4k.png");break;
+                    case "3D": image = new ImageView("/image/image_detail/3d.png");break;
+                    case "IMAX Digital 2D": image = new ImageView("/image/image_detail/imax-digital.png");break;
+                    case "4DX": image = new ImageView("/image/image_detail/4dx.png");break;
+                    default: image = new ImageView("/image/image_detail/rating_0.png");break;
+                }
+                image.setFitWidth(67);
+                image.setFitHeight(35);
+                rateSystemGridPane.add(image, 1,0);
+
+
                 seatsList = round.getSeatsList();
                 char alphabet = 65+14;
                 for (int i = 0; i < 20; i++) {
@@ -172,16 +218,18 @@ public class SeatSelectController {
             }
         }
         Collections.sort(seatsSelect);
-        seatNo = seatsSelect.toString().replace("[", "").replace("]", "");
+        if(!seatsSelect.isEmpty()) seatNo = seatsSelect.toString().replace("[", "").replace("]", "");
+        else seatNo = "Selected Seats";
         seatsSelectDisplay.setText(seatNo);
-        System.out.println("Normal: "+amountNormal+"\nHoneymoon: "+amountHoneymoon+"\nPrice: "+ price +"\n");
+        textPrice.setText("ราคารวม "+price+" บาท");
+        confirm.setDisable(seatsSelect.isEmpty());
     }
 
     @FXML public void handleConfirmBtn(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Booking");
         alert.setHeaderText("Do you want to confirm booking of the selected seat?");
-        alert.setContentText("Are you ok with this?");
+        alert.setContentText("ที่นั่งที่เลือก: Normal - "+theater.getSeatPrice("Normal")+" x "+amountNormal+" | Honeymoon - "+theater.getSeatPrice("Honeymoon")+ " x "+amountHoneymoon+"\n"+seatNo+"\n\nราคารวม: "+ price+" บาท");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
@@ -221,5 +269,17 @@ public class SeatSelectController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML public void loadMovieSelectPage(ActionEvent event){
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/movie_select.fxml"));
+        try {
+            stage.setScene(new Scene(loader.load(), 1280, 720));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.show();
     }
 }

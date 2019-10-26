@@ -8,6 +8,32 @@ public class MoviesManage {
     private CinemaManage cinema = CinemaManage.getInstance();
 
     private MoviesManage(){
+
+    }
+
+    private static MoviesManage moviesManageInstance;
+    public static synchronized MoviesManage getInstance(){
+        if(moviesManageInstance == null){
+            moviesManageInstance = new MoviesManage();
+        }
+        return moviesManageInstance;
+    }
+
+    public HashSet<Movie> getMovieHashSet() {
+        return movieHashSet;
+    }
+
+    public void addMovie(Movie movie){
+        movieHashSet.add(movie);
+    }
+
+    public void removeMovie(Movie movie){
+        movieHashSet.remove(movie);
+    }
+}
+
+
+
 //        movie1 = new Movie("It Chapter Two", "โผล่จากนรก 2",
 //                "น 15+", "สยองขวัญ / ระทึกขวัญ", "/image/image_poster/ItChapterTwo.jpg", 169, LocalDate.parse("2019-09-05"),
 //                "Twenty-seven years after their first encounter with the terrifying Pennywise, the Losers Club have grown up and moved away, until a devastating phone call brings them back.");
@@ -70,25 +96,3 @@ public class MoviesManage {
 //        cinema.setMovie4(movie4);
 //        cinema.setMovie5(movie5);
 //        cinema.setMovie6(movie6);
-    }
-
-    private static MoviesManage moviesManageInstance;
-    public static synchronized MoviesManage getInstance(){
-        if(moviesManageInstance == null){
-            moviesManageInstance = new MoviesManage();
-        }
-        return moviesManageInstance;
-    }
-
-    public HashSet<Movie> getMovieHashSet() {
-        return movieHashSet;
-    }
-
-    public void addMovie(Movie movie){
-        movieHashSet.add(movie);
-    }
-
-    public void removeMovie(Movie movie){
-        movieHashSet.remove(movie);
-    }
-}

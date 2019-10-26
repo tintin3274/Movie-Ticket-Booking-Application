@@ -22,14 +22,14 @@ public class Round {
             for (int j = 0; j < 15; j++) {
                 if(this.getTheater().getSeatType().equals("Mix")){
                     if(j>9){
-                        seatsList.put(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), (new Seat(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), "Honeymoon", 240)));
+                        seatsList.put(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), (new Seat(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), "Honeymoon", theater.getSeatPrice("Honeymoon"))));
                     }
                     else {
-                        seatsList.put(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), (new Seat(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), "Normal", 220)));
+                        seatsList.put(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), (new Seat(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), "Normal", theater.getSeatPrice("Normal"))));
                     }
                 }
                 else {
-                    seatsList.put(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), (new Seat(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), "Normal", 220)));
+                    seatsList.put(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), (new Seat(""+(char)(alphabet-j)+(i<9?"0":"")+(i+1), "Normal", theater.getSeatPrice("Normal"))));
                 }
             }
         }

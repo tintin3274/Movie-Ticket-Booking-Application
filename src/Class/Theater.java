@@ -2,12 +2,14 @@ package Class;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class Theater {
     private String name;
     private String systemType;
     private String seatType;
     private ArrayList<Round> roundsList = new ArrayList<>();
+    private HashMap<String, Double> seatPrice = new HashMap<>();
 
 
     public Theater(String name, String systemType, String seatType) {
@@ -26,6 +28,9 @@ public class Theater {
         });
     }
 
+    public void addSeatPrice(String seatName, Double price){
+        seatPrice.put(seatName, price);
+    }
 
     public String getName() {
         return name;
@@ -41,5 +46,10 @@ public class Theater {
 
     public ArrayList<Round> getRoundsList() {
         return roundsList;
+    }
+
+    public double getSeatPrice(String seatName) {
+        if(seatPrice.containsKey(seatName)) return seatPrice.get(seatName);
+        return 0;
     }
 }

@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,7 +23,7 @@ public class TheaterRoundSelectController {
 
     @FXML GridPane rateSystemGridPane, roundGridPane;
     @FXML ImageView moviePoster;
-    @FXML Text textTitleEn, textTitleTh, textGenre, textLength, textReleaseDate;
+    @FXML Label textTitleEn, textTitleTh, textGenre, textLength, textReleaseDate;
     @FXML TextArea textAreaDescription;
     //@FXML Text theaterName1, theaterName2, theaterName3, theaterName4, theaterName5, theaterName6;
     CinemaManage cinema = CinemaManage.getInstance();
