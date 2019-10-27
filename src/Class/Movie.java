@@ -11,11 +11,12 @@ public class Movie {
     private String genre;
     private String imgPosterPath;
     private String description;
+    private String videoPath;
     private int length;
     private LocalDate releaseDate;
     private Set<String> systemType = new LinkedHashSet<>();
 
-    public Movie(String nameEn, String nameTh, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate, String description) {
+    public Movie(String nameEn, String nameTh, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate, String description, String videoPath) {
         this.nameEn = nameEn;
         this.nameTh = nameTh;
         this.rate = rate;
@@ -24,10 +25,11 @@ public class Movie {
         this.length = length;
         this.releaseDate = releaseDate;
         this.description = description;
+        this.videoPath = videoPath;
     }
 
     public Movie(String nameEn, String nameTh, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate) {
-        this(nameEn, nameTh, rate, genre, imgPosterPath, length, releaseDate, "");
+        this(nameEn, nameTh, rate, genre, imgPosterPath, length, releaseDate, "", "");
     }
 
     public String getNameEn() {
@@ -52,6 +54,10 @@ public class Movie {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getVideoPath() {
+        return videoPath;
     }
 
     public int getLength() {

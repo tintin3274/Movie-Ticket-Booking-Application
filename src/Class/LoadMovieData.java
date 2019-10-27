@@ -19,7 +19,7 @@ public class LoadMovieData {
             BufferedReader reader = new BufferedReader(fileReader);
             while ((line = reader.readLine()) != null){
                 data = line.split("<,>");
-                Movie movie = new Movie(data[0], data[1], data[2], data[3], data[4], Integer.parseInt(data[5]), LocalDate.parse(data[6]), data[7]);
+                Movie movie = new Movie(data[0], data[1], data[2], data[3], data[4], Integer.parseInt(data[5]), LocalDate.parse(data[6]), data[7], data[13]);
                 if(data[8].equals("True_2D")) movie.addSystemType("2D");
                 if(data[9].equals("True_4K")) movie.addSystemType("4K");
                 if(data[10].equals("True_3D")) movie.addSystemType("3D");
@@ -35,3 +35,5 @@ public class LoadMovieData {
         }
     }
 }
+
+

@@ -59,6 +59,7 @@ public class AdminController {
     private String rate;
     private String genre;
     private String imgPosterPath;
+    private String videoPath;
     private int length;
     private LocalDate releaseDate;
 
@@ -140,7 +141,7 @@ public class AdminController {
                 description = descriptionTextArea.getText();
                 releaseDate = releaseDateDatePicker.getValue();
 
-                movie = new Movie(nameEn, nameTh, rate, genre, imgPosterPath, length, releaseDate, description);
+                movie = new Movie(nameEn, nameTh, rate, genre, imgPosterPath, length, releaseDate, description, videoPath);
                 if(systemType1CheckBox.isSelected()) movie.addSystemType("2D");
                 if(systemType2CheckBox.isSelected()) movie.addSystemType("4K");
                 if(systemType3CheckBox.isSelected()) movie.addSystemType("3D");
@@ -296,6 +297,8 @@ public class AdminController {
 
                 if(m.getSystemType().contains("4DX")) writer.write("<,>"+"True_4DX");
                 else writer.write("<,>"+"False_4DX");
+
+                writer.write("<,>"+m.getVideoPath());
 
                 writer.newLine();
             }

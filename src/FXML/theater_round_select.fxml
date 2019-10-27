@@ -42,12 +42,12 @@
       </Text>
       <Text fill="WHITE" layoutX="1074.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="วันที่เข้าฉาย">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font size="22.0" />
          </font>
       </Text>
       <Text fill="WHITE" layoutX="384.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="เนื้อเรื่องย่อ">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font size="25.0" />
          </font>
       </Text>
       <Label fx:id="textGenre" layoutX="673.0" layoutY="39.0" prefHeight="74.0" prefWidth="213.0" text="แสดงหมวดหมู่" textFill="#f1c40f" wrapText="true">
@@ -65,9 +65,9 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextArea fx:id="textAreaDescription" editable="false" layoutX="384.0" layoutY="470.0" prefHeight="166.0" prefWidth="356.0" wrapText="true">
+      <TextArea fx:id="textAreaDescription" editable="false" layoutX="384.0" layoutY="470.0" prefHeight="166.0" prefWidth="356.0" promptText="รายละเอียด" stylesheets="@../css/transparentTextArea.css" wrapText="true">
          <font>
-            <Font size="16.0" />
+            <Font size="18.0" />
          </font>
       </TextArea>
       <GridPane fx:id="rateSystemGridPane" layoutX="198.0" layoutY="75.0" prefHeight="35.0" prefWidth="408.0">
@@ -220,6 +220,6 @@
             <Image url="@../image/image_poster/ComingSoon.jpg" />
          </image>
       </ImageView>
-      <MediaView fitHeight="200.0" fitWidth="355.56" layoutX="384.0" layoutY="176.0" />
+      <MediaView fx:id="mv" fitHeight="200.0" fitWidth="355.56" layoutX="384.0" layoutY="176.0" />
    </children>
 </AnchorPane>

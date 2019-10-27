@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.GridPane;
@@ -45,6 +46,7 @@ public class SeatSelectController {
     @FXML Button confirm;
     @FXML Label seatsSelectDisplay;
     @FXML Label textTitleEn, textTitleTh, textGenre, textLength, textReleaseDate, theaterName, textPrice, priceNormal, priceHoneymoon;
+    @FXML ImageView moviePoster, imageNormal, imageHoneymoon;
 
     @FXML public void initialize() {
         price = 0;
@@ -64,10 +66,17 @@ public class SeatSelectController {
                 textGenre.setText(movie.getGenre());
                 textLength.setText(movie.getLength()+" นาที");
                 textReleaseDate.setText(""+movie.getReleaseDate());
-                theaterName.setText(theater.getName()+" - Round "+round.getTime());
-                textPrice.setText("ราคารวม "+price+" บาท");
+                theaterName.setText(theater.getName()+"\nRound "+round.getTime());
+                textPrice.setText(price+" บาท");
                 priceNormal.setText("Normal "+theater.getSeatPrice("Normal")+" บาท");
                 priceHoneymoon.setText("Honeymoon "+theater.getSeatPrice("Honeymoon")+" บาท");
+                moviePoster.setImage(new Image(movie.getImgPosterPath()));
+
+                if (theater.getSeatType().equals("Normal")){
+                    imageHoneymoon.setImage(null);
+                    priceHoneymoon.setText("");
+                }
+
                 ImageView image;
                 switch (movie.getRate()){
                     case "ทั่วไป": image = new ImageView("/image/image_detail/rating_1.png");break;
@@ -92,7 +101,6 @@ public class SeatSelectController {
                 image.setFitHeight(35);
                 rateSystemGridPane.add(image, 1,0);
 
-
                 seatsList = round.getSeatsList();
                 char alphabet = 65+14;
                 for (int i = 0; i < 20; i++) {
@@ -113,6 +121,7 @@ public class SeatSelectController {
                                     case "Honeymoon" : b.setStyle("-fx-background-image: url('/image/seat-3.png');-fx-background-size: 44 30;-fx-background-position: center center"); break;
                                     case "Normal" : b.setStyle("-fx-background-image: url('/image/seat-2.png');-fx-background-size: 44 30;-fx-background-position: center center"); break;
                                 }
+                                cancelBooking(b);
                             }
                         });
 
@@ -177,9 +186,27 @@ public class SeatSelectController {
             BufferedWriter writer = new BufferedWriter(fileWriter);
             for(Button b:buttonsList){
                 seatsList.get(b.getId()).setBooking(cinema.getAccount());
-                writer.write(cinema.getAccount().getUsername()+","+round.getTheater().getName()+","+round.getMovie().getNameEn()+","+round.getTime()+","+b.getId());
+                writer.write(cinema.getAccount().getUsername()+","+round.getTheater().getName()+","+round.getMovie().getNameEn()+","+round.getTime()+","+b.getId()+","+"Booking");
                 writer.newLine();
             }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML public void cancelBooking(Button b){
+        File dir = new File("csvData");
+        if (!dir.exists()){
+            dir.mkdirs();
+        }
+        try {
+            File file = new File("csvData/BookingData.csv");
+            file.createNewFile();
+            FileWriter fileWriter = new FileWriter(file, true);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+            writer.write(cinema.getAccount().getUsername()+","+round.getTheater().getName()+","+round.getMovie().getNameEn()+","+round.getTime()+","+b.getId()+","+"Cancel");
+            writer.newLine();
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -221,7 +248,7 @@ public class SeatSelectController {
         if(!seatsSelect.isEmpty()) seatNo = seatsSelect.toString().replace("[", "").replace("]", "");
         else seatNo = "Selected Seats";
         seatsSelectDisplay.setText(seatNo);
-        textPrice.setText("ราคารวม "+price+" บาท");
+        textPrice.setText(price+" บาท");
         confirm.setDisable(seatsSelect.isEmpty());
     }
 
@@ -229,7 +256,12 @@ public class SeatSelectController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Booking");
         alert.setHeaderText("Do you want to confirm booking of the selected seat?");
-        alert.setContentText("ที่นั่งที่เลือก: Normal - "+theater.getSeatPrice("Normal")+" x "+amountNormal+" | Honeymoon - "+theater.getSeatPrice("Honeymoon")+ " x "+amountHoneymoon+"\n"+seatNo+"\n\nราคารวม: "+ price+" บาท");
+        if (theater.getSeatType().equals("Normal")){
+            alert.setContentText("ที่นั่งที่เลือก: Normal - "+theater.getSeatPrice("Normal")+" x "+amountNormal+"\n"+seatNo+"\n\nราคารวม: "+ price+" บาท");
+        }
+        else {
+            alert.setContentText("ที่นั่งที่เลือก: Normal - "+theater.getSeatPrice("Normal")+" x "+amountNormal+" | Honeymoon - "+theater.getSeatPrice("Honeymoon")+ " x "+amountHoneymoon+"\n"+seatNo+"\n\nราคารวม: "+ price+" บาท");
+        }
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
@@ -266,6 +298,7 @@ public class SeatSelectController {
             ticketController.setSeatNo(seatNo);
             ticketController.setPrice(price);
             //stage.show();
+            stage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

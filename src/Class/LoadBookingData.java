@@ -43,7 +43,10 @@ public class LoadBookingData {
                 }
                 seatsList = round.getSeatsList();
                 seat = seatsList.get(data[4]);
-                if(account!=null && round!=null && round.getMovie().getNameEn().equals(data[2]) && !seat.isBooked()) seat.setBooking(account);
+                switch (data[5]){
+                    case "Booking": if(account!=null && round!=null && round.getMovie().getNameEn().equals(data[2]) && !seat.isBooked()) seat.setBooking(account); break;
+                    case "Cancel" : seat.cancelBooking();
+                }
             }
             reader.close();
         } catch (FileNotFoundException e) {

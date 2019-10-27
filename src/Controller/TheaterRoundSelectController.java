@@ -4,6 +4,7 @@ import Class.*;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,19 +13,30 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 
 public class TheaterRoundSelectController {
     private Movie movie;
+    private MediaPlayer mp;
+    private boolean fullscreen;
 
     @FXML GridPane rateSystemGridPane, roundGridPane;
     @FXML ImageView moviePoster;
     @FXML Label textTitleEn, textTitleTh, textGenre, textLength, textReleaseDate;
     @FXML TextArea textAreaDescription;
+    @FXML MediaView mv;
+
     //@FXML Text theaterName1, theaterName2, theaterName3, theaterName4, theaterName5, theaterName6;
     CinemaManage cinema = CinemaManage.getInstance();
 
@@ -32,6 +44,8 @@ public class TheaterRoundSelectController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                fullscreen = false;
+
                 textTitleEn.setText(movie.getNameEn());
                 textTitleTh.setText(movie.getNameTh());
                 textGenre.setText(movie.getGenre());
@@ -39,6 +53,56 @@ public class TheaterRoundSelectController {
                 textReleaseDate.setText(""+movie.getReleaseDate());
                 moviePoster.setImage(new Image(movie.getImgPosterPath()));
                 textAreaDescription.setText(movie.getDescription());
+
+                File file = new File(movie.getVideoPath());
+                Media media = new Media(file.toURI().toString());
+                mp = new MediaPlayer(media);
+
+
+                mv.setMediaPlayer(mp);
+                mp.setAutoPlay(true);
+                mp.setCycleCount(MediaPlayer.INDEFINITE);
+//                mp.setVolume(0.5);
+                mv.setOnScroll(new EventHandler<ScrollEvent>() {
+                    @Override
+                    public void handle(ScrollEvent event) {
+                        if(event.getDeltaX() > 0) mp.setVolume(mp.getVolume()-0.10);
+                        else if (event.getDeltaX() < 0) mp.setVolume(mp.getVolume()+0.10);
+                        else if (event.getDeltaY() > 0) mp.seek(mp.getCurrentTime().add(Duration.seconds(5)));
+                        else if (event.getDeltaY() < 0) mp.seek(mp.getCurrentTime().add(Duration.seconds(-5)));
+                    }
+                });
+
+
+                mv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1){
+                            switch (mp.getStatus()){
+                                case PLAYING: mp.pause(); break;
+                                case STOPPED:
+                                case PAUSED:
+                                case READY:
+                                    mp.play(); break;
+                            }
+                        }
+                        else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+                            fullscreen = !fullscreen;
+                            if(fullscreen == true){
+                                mv.setLayoutX(0);
+                                mv.setLayoutY(0);
+                                mv.setFitWidth(1280);
+                                mv.setFitHeight(720);
+                            }
+                            else if(fullscreen == false){
+                                mv.setLayoutX(384);
+                                mv.setLayoutY(176);
+                                mv.setFitWidth(355.56);
+                                mv.setFitHeight(200);
+                            }
+                        }
+                    }
+                });
 
                 ImageView image;
                 switch (movie.getRate()){
@@ -177,6 +241,7 @@ public class TheaterRoundSelectController {
             case 6: seatSelectController.setRound(cinema.getTheater6().getRoundsList().get(indexRound));break;
         }
         stage.show();
+        mp.stop();
     }
 
     @FXML public void loadMovieSelectPage(ActionEvent event){
@@ -189,5 +254,6 @@ public class TheaterRoundSelectController {
             e.printStackTrace();
         }
         stage.show();
+        mp.stop();
     }
 }
