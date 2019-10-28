@@ -3,48 +3,75 @@ package Controller;
 import Class.*;
 
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.MediaView;
+import javafx.scene.image.WritableImage;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
+import java.io.File;
 import java.io.IOException;
 
 
 public class ReceiptController {
-    @FXML MediaView mv;
     @FXML ImageView ticketImageView;
 
-    private Round round;
-    private String seatNo;
-    private Double price;
+    private String ref;
+    private Image ticket;
 
     @FXML public void initialize() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                ticket = TicketController.image;
+                ref = TicketController.ref;
                 ticketImageView.setImage(TicketController.image);
             }
         });
     }
 
-    public void setRound(Round round) {
-        this.round = round;
-    }
 
-    public void setSeatNo(String seatNo) {
-        this.seatNo = seatNo;
-    }
+//    @FXML public void saveReceiptImage() {
+//        TicketController.saveTicketImage(ticket, ref);
+//    }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+    @FXML public void saveTicketImage() {
+        File dir = new File("ticketsImage");
+        if (!dir.exists()){
+            dir.mkdirs();
+        }
 
-    @FXML public void saveReceiptImage(ActionEvent event) {
-        TicketController.saveTicketImage();
+        FileChooser fileChooser = new FileChooser();
+        File defaultDirectory = new File("./ticketsImage/");
+        fileChooser.setInitialDirectory(defaultDirectory);
+        fileChooser.setInitialFileName(ref.replace(":", "").replace(".", ""));
+
+        //Set extension filter
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("png files (*.png)", "*.png"));
+
+        //Prompt user to select a file
+        File file = fileChooser.showSaveDialog(null);
+
+        if(file != null){
+            try {
+                //Pad the capture area
+                //WritableImage writableImage = ticketAnchorPane.snapshot(new SnapshotParameters(), null);
+                WritableImage writableImage = (WritableImage) ticket;
+                RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                //Write the snapshot to the chosen file
+                ImageIO.write(renderedImage, "png", file);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     @FXML public void loadMovieSelectPage(ActionEvent event){

@@ -37,7 +37,7 @@ public class TicketController {
     private String seatNo;
     private Double price;
     public static Image image;
-    private static String ref;
+    public static String ref;
     CinemaManage cinema = CinemaManage.getInstance();
 
     @FXML public void initialize(){
@@ -108,30 +108,31 @@ public class TicketController {
     @FXML private void generateTicket(){
         image = ticketAnchorPane.snapshot(new SnapshotParameters(), null);
     }
-
-    @FXML public static void saveTicketImage() {
-        FileChooser fileChooser = new FileChooser();
-        File defaultDirectory = new File("./ticketsImage/");
-        fileChooser.setInitialDirectory(defaultDirectory);
-        fileChooser.setInitialFileName(ref.replace(":", "").replace(".", ""));
-
-        //Set extension filter
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("png files (*.png)", "*.png"));
-
-        //Prompt user to select a file
-        File file = fileChooser.showSaveDialog(null);
-
-        if(file != null){
-            try {
-                //Pad the capture area
-                //WritableImage writableImage = ticketAnchorPane.snapshot(new SnapshotParameters(), null);
-                WritableImage writableImage = (WritableImage) image;
-                RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-                //Write the snapshot to the chosen file
-                ImageIO.write(renderedImage, "png", file);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
 }
+
+
+//    @FXML public static void saveTicketImage() {
+//        FileChooser fileChooser = new FileChooser();
+//        File defaultDirectory = new File("./ticketsImage/");
+//        fileChooser.setInitialDirectory(defaultDirectory);
+//        fileChooser.setInitialFileName(ref.replace(":", "").replace(".", ""));
+//
+//        //Set extension filter
+//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("png files (*.png)", "*.png"));
+//
+//        //Prompt user to select a file
+//        File file = fileChooser.showSaveDialog(null);
+//
+//        if(file != null){
+//            try {
+//                //Pad the capture area
+//                //WritableImage writableImage = ticketAnchorPane.snapshot(new SnapshotParameters(), null);
+//                WritableImage writableImage = (WritableImage) image;
+//                RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+//                //Write the snapshot to the chosen file
+//                ImageIO.write(renderedImage, "png", file);
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//    }

@@ -217,7 +217,7 @@
       </Button>
       <ImageView fx:id="moviePoster" fitHeight="460.0" fitWidth="330.0" layoutX="33.0" layoutY="176.0">
          <image>
-            <Image url="@../image/image_poster/ComingSoon.jpg" />
+            <Image url="@../poster/ComingSoon.jpg" />
          </image>
       </ImageView>
       <MediaView fx:id="mv" fitHeight="200.0" fitWidth="355.56" layoutX="384.0" layoutY="176.0" />

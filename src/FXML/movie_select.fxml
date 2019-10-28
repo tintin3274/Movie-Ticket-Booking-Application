@@ -22,32 +22,32 @@
       </Text>
       <ImageView fx:id="moviePoster1" fitHeight="278.0" fitWidth="200.0" layoutX="28.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
          <image>
-            <Image url="@../image/image_poster/ComingSoon.jpg" />
+            <Image url="@../poster/ComingSoon.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="moviePoster2" fitHeight="278.0" fitWidth="200.0" layoutX="233.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
          <image>
-            <Image url="@../image/image_poster/ComingSoon.jpg" />
+            <Image url="@../poster/ComingSoon.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="moviePoster3" fitHeight="278.0" fitWidth="200.0" layoutX="438.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
          <image>
-            <Image url="@../image/image_poster/ComingSoon.jpg" />
+            <Image url="@../poster/ComingSoon.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="moviePoster4" fitHeight="278.0" fitWidth="200.0" layoutX="643.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
          <image>
-            <Image url="@../image/image_poster/ComingSoon.jpg" />
+            <Image url="@../poster/ComingSoon.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="moviePoster5" fitHeight="278.0" fitWidth="200.0" layoutX="848.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
          <image>
-            <Image url="@../image/image_poster/ComingSoon.jpg" />
+            <Image url="@../poster/ComingSoon.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="moviePoster6" fitHeight="278.0" fitWidth="200.0" layoutX="1053.0" layoutY="82.0" onMouseClicked="#mouseClickImage" onMouseEntered="#mouseEnterImage" onMouseExited="#mouseExitImage">
          <image>
-            <Image url="@../image/image_poster/ComingSoon.jpg" />
+            <Image url="@../poster/ComingSoon.jpg" />
          </image>
       </ImageView>
       <Label fx:id="label1" layoutX="28.0" layoutY="367.0" prefHeight="70.0" prefWidth="200.0" text="Label Example" textFill="#ae2c37">

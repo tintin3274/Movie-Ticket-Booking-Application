@@ -365,7 +365,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Label fx:id="theaterName" layoutX="890.0" layoutY="179.0" prefHeight="127.0" prefWidth="188.0" text="Theater X      Round hh:mm" textFill="WHITE" wrapText="true">
+      <Label fx:id="theaterName" layoutX="886.0" layoutY="179.0" prefHeight="127.0" prefWidth="188.0" text="Theater X Round hh:mm" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font size="28.0" />
          </font>
@@ -387,7 +387,7 @@
       </Text>
       <ImageView fx:id="moviePoster" fitHeight="220.0" fitWidth="154.0" layoutX="1084.0" layoutY="132.0">
          <image>
-            <Image url="@../image/image_poster/ComingSoon.jpg" />
+            <Image url="@../poster/ComingSoon.jpg" />
          </image>
       </ImageView>
    </children>

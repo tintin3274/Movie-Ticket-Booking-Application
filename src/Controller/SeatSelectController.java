@@ -276,10 +276,6 @@ public class SeatSelectController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ReceiptController receiptController = loader.getController();
-            receiptController.setRound(round);
-            receiptController.setSeatNo(seatNo);
-            receiptController.setPrice(price);
             stage.show();
         } else {
             // ... user chose CANCEL or closed the dialog

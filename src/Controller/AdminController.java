@@ -19,14 +19,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 
 public class AdminController {
-    @FXML TextField nameEnTextField, nameThTextField, genreTextField, lengthTextField, addRoundTimeTextField;
+    @FXML TextField nameEnTextField, nameThTextField, genreTextField, lengthTextField, addRoundTimeTextField, videoTextField;
     @FXML TextArea descriptionTextArea;
     @FXML CheckBox systemType1CheckBox, systemType2CheckBox, systemType3CheckBox, systemType4CheckBox, systemType5CheckBox;
     @FXML DatePicker releaseDateDatePicker;
@@ -110,17 +108,22 @@ public class AdminController {
         listMovieData.addAll(moviesManage.getMovieHashSet());
     }
 
-    @FXML public void handleBrowseButton(ActionEvent event){
+    @FXML public void handleBrowseImageButton(ActionEvent event){
+        File dir = new File("poster");
+        if (!dir.exists()){
+            dir.mkdirs();
+        }
+
         String path = null;
         FileChooser fileChooser = new FileChooser();
-        File defaultDirectory = new File("./");
+        File defaultDirectory = new File("./poster/");
         fileChooser.setInitialDirectory(defaultDirectory);
         File file = fileChooser.showOpenDialog(new Stage());
         if (file != null) {
             path = file.toURI().toString();
             //System.out.println(file.toURI().toString());
-            if(path.indexOf("/image") >= 0){
-                path = path.substring(path.indexOf("/image"));
+            if(path.indexOf("/poster") >= 0){
+                path = path.substring(path.indexOf("poster"));
                 //System.out.println(path);
                 posterImageView.setImage(new Image(path));
             }
@@ -128,8 +131,29 @@ public class AdminController {
         imgPosterPath = path;
     }
 
+    @FXML public void handleBrowseVideoButton(ActionEvent event){
+        File dir = new File("trailer");
+        if (!dir.exists()){
+            dir.mkdirs();
+        }
+
+        String path = null;
+        FileChooser fileChooser = new FileChooser();
+        File defaultDirectory = new File("./trailer/");
+        fileChooser.setInitialDirectory(defaultDirectory);
+        File file = fileChooser.showOpenDialog(new Stage());
+        if (file != null) {
+            path = file.toURI().getPath();
+            if(path.indexOf("/trailer") >= 0){
+                path = path.substring(path.indexOf("trailer"));
+                videoTextField.setText(path);
+            }
+        }
+        videoPath = path;
+    }
+
     @FXML public void handleAddMovieButton(ActionEvent event){
-        if(!nameEnTextField.getText().equals("") && !nameThTextField.getText().equals("") && !genreTextField.getText().equals("") && !descriptionTextArea.getText().equals("") && !lengthTextField.getText().equals("") && releaseDateDatePicker.getValue()!=null && imgPosterPath!=null){
+        if(!nameEnTextField.getText().equals("") && !nameThTextField.getText().equals("") && !genreTextField.getText().equals("") && !descriptionTextArea.getText().equals("") && !lengthTextField.getText().equals("") && releaseDateDatePicker.getValue()!=null && imgPosterPath!=null && videoPath!=null){
             boolean isNumeric = lengthTextField.getText().chars().allMatch(Character::isDigit);
             if(isNumeric){
                 Movie movie;
@@ -147,7 +171,7 @@ public class AdminController {
                 if(systemType3CheckBox.isSelected()) movie.addSystemType("3D");
                 if(systemType4CheckBox.isSelected()) movie.addSystemType("IMAX Digital 2D");
                 if(systemType5CheckBox.isSelected()) movie.addSystemType("4DX");
-                System.out.println(movie);
+                //System.out.println(movie);
 
                 moviesManage.addMovie(movie);
                 listMovieData.add(movie);
@@ -205,6 +229,7 @@ public class AdminController {
         releaseDateDatePicker.setValue(movieSelect.getReleaseDate());
         imgPosterPath = movieSelect.getImgPosterPath();
         posterImageView.setImage(new Image(imgPosterPath));
+        videoTextField.setText(movieSelect.getVideoPath());
         systemType1CheckBox.setSelected(false);
         systemType2CheckBox.setSelected(false);
         systemType3CheckBox.setSelected(false);
@@ -277,8 +302,8 @@ public class AdminController {
         try {
             File file = new File("csvData/MovieData.csv");
             file.createNewFile();
-            FileWriter fileWriter = new FileWriter(file);
-            BufferedWriter writer = new BufferedWriter(fileWriter);
+            //FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
 
             for(Movie m : moviesManage.getMovieHashSet()){
                 writer.write(m.getNameEn()+"<,>"+m.getNameTh()+"<,>"+m.getRate()+"<,>"+m.getGenre()+"<,>"+m.getImgPosterPath()+"<,>"+m.getLength()+"<,>"+m.getReleaseDate()+"<,>"+m.getDescription());

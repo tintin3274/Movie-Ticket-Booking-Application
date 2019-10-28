@@ -1,6 +1,7 @@
 package Class;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 
 public class LoadMovieData {
@@ -16,7 +17,7 @@ public class LoadMovieData {
         try {
             File file = new File("csvData/MovieData.csv");
             FileReader fileReader = new FileReader(file);
-            BufferedReader reader = new BufferedReader(fileReader);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
             while ((line = reader.readLine()) != null){
                 data = line.split("<,>");
                 Movie movie = new Movie(data[0], data[1], data[2], data[3], data[4], Integer.parseInt(data[5]), LocalDate.parse(data[6]), data[7], data[13]);

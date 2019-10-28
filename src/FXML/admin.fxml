@@ -174,8 +174,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="browseButton" layoutX="996.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleBrowseButton" prefHeight="25.0" prefWidth="57.0" text="เลือก" />
-      <Button fx:id="addMovieButton" layoutX="1076.0" layoutY="627.0" mnemonicParsing="false" onAction="#handleAddMovieButton" prefHeight="35.0" prefWidth="115.0" text="เพิ่มภาพยนตร์">
+      <Button fx:id="browseImageButton" layoutX="996.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleBrowseImageButton" prefHeight="25.0" prefWidth="57.0" text="เลือก" />
+      <Button fx:id="addMovieButton" layoutX="1080.0" layoutY="663.0" mnemonicParsing="false" onAction="#handleAddMovieButton" prefHeight="35.0" prefWidth="115.0" text="เพิ่มภาพยนตร์">
          <font>
             <Font size="16.0" />
          </font>
@@ -237,5 +237,12 @@
             <Font size="16.0" />
          </font>
       </Button>
+      <TextField fx:id="videoTextField" layoutX="1066.0" layoutY="618.0" prefHeight="25.0" prefWidth="142.0" />
+      <Label layoutX="1000.0" layoutY="617.0" prefWidth="61.0" text="ตัวอย่าง :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="browseVideoButton" layoutX="1002.0" layoutY="650.0" mnemonicParsing="false" onAction="#handleBrowseVideoButton" prefHeight="25.0" prefWidth="57.0" text="เลือก" />
    </children>
 </AnchorPane>

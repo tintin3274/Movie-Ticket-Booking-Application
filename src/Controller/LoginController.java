@@ -68,4 +68,15 @@ public class LoginController {
         }
         stage.show();
     }
+
+    @FXML public void handleInfoButton(){
+        Stage stage = (Stage) display.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/aboutme.fxml"));
+        try {
+            stage.setScene(new Scene(loader.load(), 1280, 720));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.show();
+    }
 }

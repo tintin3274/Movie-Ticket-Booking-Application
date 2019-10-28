@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ticketAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1920.0" prefWidth="1080.0" style="-fx-background-color: #a8a8a8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TicketController">
+<AnchorPane fx:id="ticketAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1920.0" prefWidth="1080.0" style="-fx-background-color: #d3d3d3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TicketController">
    <children>
-      <Label fx:id="nameLabel" layoutX="204.0" layoutY="1745.0" prefHeight="45.0" prefWidth="450.0" text="Fristname Lastname">
+      <Label fx:id="nameLabel" layoutX="180.0" layoutY="1745.0" prefHeight="45.0" prefWidth="450.0" text="Fristname Lastname">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <ImageView fx:id="posterImageView" fitHeight="1000.0" fitWidth="720.0" layoutX="204.0" layoutY="45.0">
+      <ImageView fx:id="posterImageView" fitHeight="1000.0" fitWidth="720.0" layoutX="180.0" layoutY="45.0">
          <image>
-            <Image url="@../image/image_poster/ComingSoon.jpg" />
+            <Image url="@../poster/ComingSoon.jpg" />
          </image>
       </ImageView>
-      <GridPane layoutX="204.0" layoutY="1070.0" prefHeight="550.0" prefWidth="700.0">
+      <GridPane layoutX="180.0" layoutY="1070.0" prefHeight="550.0" prefWidth="700.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="340.0" minWidth="10.0" prefWidth="240.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.0" minWidth="10.0" prefWidth="460.0" />
@@ -38,22 +38,22 @@
          <children>
             <Label prefHeight="75.0" prefWidth="240.0" text="MOVIE TITLE" GridPane.rowIndex="1">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Label>
             <Label prefHeight="75.0" prefWidth="240.0" text="DATE" GridPane.rowIndex="2">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Label>
             <Label prefHeight="75.0" prefWidth="240.0" text="SHOWTIME" GridPane.rowIndex="3">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Label>
             <Label prefHeight="75.0" prefWidth="240.0" text="SEAT No." GridPane.rowIndex="5">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
                <GridPane.margin>
                   <Insets />
@@ -66,7 +66,7 @@
             </Label>
             <Label prefHeight="75.0" prefWidth="240.0" text="BRANCH">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Label>
             <Label fx:id="titleLabel" prefHeight="75.0" prefWidth="460.0" text="Title English" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -91,7 +91,7 @@
             </Label>
             <Label prefHeight="75.0" prefWidth="240.0" text="THEATER" GridPane.rowIndex="4">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Label>
             <Label fx:id="theaterLabel" prefHeight="75.0" prefWidth="460.0" text="Theater X" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -101,19 +101,19 @@
             </Label>
          </children>
       </GridPane>
-      <Label fx:id="priceLabel" layoutX="204.0" layoutY="1795.0" prefHeight="45.0" prefWidth="450.0" text="PRICE Vat Included : XXX baht">
+      <Label fx:id="priceLabel" layoutX="180.0" layoutY="1795.0" prefHeight="45.0" prefWidth="450.0" text="PRICE Vat Included : XXX baht">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <ImageView fx:id="qrCodeImageView" fitHeight="250.0" fitWidth="250.0" layoutX="676.0" layoutY="1645.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="qrCodeImageView" fitHeight="250.0" fitWidth="250.0" layoutX="652.0" layoutY="1645.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/qrExample.png" />
          </image>
       </ImageView>
-      <Label fx:id="refLabel" layoutX="204.0" layoutY="1845.0" prefHeight="45.0" prefWidth="450.0" text="REF No. yyyy-MM-ddThh:mm:ss.sss">
+      <Label fx:id="refLabel" layoutX="180.0" layoutY="1845.0" prefHeight="45.0" prefWidth="450.0" text="REF No. yyyy-MM-ddThh:mm:ss.sss">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Label>
    </children>
