@@ -33,7 +33,7 @@ public class MovieSelectController {
     private Movie movie5 = cinema.getMovie5();
     private Movie movie6 = cinema.getMovie6();
 
-    private Movie movie0 = new Movie("<<Coming Soon>>","<<เร็ว ๆ นี้>>","-","<<->>","/image/image_poster/ComingSoon.jpg",0, null,"<<...>>", "");
+    private Movie movie0 = new Movie("<<Coming Soon>>","<<เร็ว ๆ นี้>>","-","<<->>","/poster/ComingSoon.jpg",0, null,"<<...>>", "");
 
     @FXML
     public void initialize() {
@@ -81,25 +81,31 @@ public class MovieSelectController {
     }
 
     @FXML public void mouseClickImage(MouseEvent event){
+        Movie movie = null;
         ImageView image = (ImageView) event.getSource();
         //System.out.println(image.getId());
-        Stage stage = (Stage) image.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/theater_round_select.fxml"));
-        try {
-            stage.setScene(new Scene(loader.load(), 1280, 720));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        TheaterRoundSelectController theaterRoundSelectController = loader.getController();
+
         switch (image.getId()){
-            case "moviePoster1": theaterRoundSelectController.setMovie(movie1); break;
-            case "moviePoster2": theaterRoundSelectController.setMovie(movie2); break;
-            case "moviePoster3": theaterRoundSelectController.setMovie(movie3); break;
-            case "moviePoster4": theaterRoundSelectController.setMovie(movie4); break;
-            case "moviePoster5": theaterRoundSelectController.setMovie(movie5); break;
-            case "moviePoster6": theaterRoundSelectController.setMovie(movie6); break;
+            case "moviePoster1": movie = movie1; break;
+            case "moviePoster2": movie = movie2; break;
+            case "moviePoster3": movie = movie3; break;
+            case "moviePoster4": movie = movie4; break;
+            case "moviePoster5": movie = movie5; break;
+            case "moviePoster6": movie = movie6; break;
         }
-        stage.show();
+
+        if (movie != movie0){
+            Stage stage = (Stage) image.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/theater_round_select.fxml"));
+            try {
+                stage.setScene(new Scene(loader.load(), 1280, 720));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            TheaterRoundSelectController theaterRoundSelectController = loader.getController();
+            theaterRoundSelectController.setMovie(movie);
+            stage.show();
+        }
     }
 
     @FXML public void handleLogoutButton(ActionEvent event){

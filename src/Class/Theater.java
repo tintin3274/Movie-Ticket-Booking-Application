@@ -28,6 +28,10 @@ public class Theater {
         });
     }
 
+    public void removeRound(Round round){
+        roundsList.remove(round);
+    }
+
     public void addSeatPrice(String seatName, Double price){
         seatPrice.put(seatName, price);
     }

@@ -39,13 +39,15 @@ public class LoadShowTime {
                     }
                 }
 
-                theater.addRound(new Round(theater, movie, data[2]));
+                if(movie != null) theater.addRound(new Round(theater, movie, data[2]));
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            //e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            //e.printStackTrace();
         }
     }
 }

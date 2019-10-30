@@ -39,11 +39,7 @@ public class ReceiptController {
     }
 
 
-//    @FXML public void saveReceiptImage() {
-//        TicketController.saveTicketImage(ticket, ref);
-//    }
-
-    @FXML public void saveTicketImage() {
+    @FXML public void handleSaveTicketButton() {
         File dir = new File("ticketsImage");
         if (!dir.exists()){
             dir.mkdirs();
@@ -74,7 +70,7 @@ public class ReceiptController {
         }
     }
 
-    @FXML public void loadMovieSelectPage(ActionEvent event){
+    @FXML public void handleMainPageButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/movie_select.fxml"));

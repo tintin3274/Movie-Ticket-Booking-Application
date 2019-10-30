@@ -65,7 +65,7 @@ public class RegisterController {
                         firstNameTextField.setText("");
                         lastNameTextField.setText("");
 
-                        //loadLoginPage(event);
+                        //handleLoginButton(event);
                     }
                 }
                 else {
@@ -81,7 +81,7 @@ public class RegisterController {
         }
     }
 
-    @FXML public void loadLoginPage(ActionEvent event){
+    @FXML public void handleLoginButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/login.fxml"));

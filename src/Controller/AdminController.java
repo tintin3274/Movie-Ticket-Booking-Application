@@ -49,6 +49,7 @@ public class AdminController {
     private int index;
     private Movie movieSelect;
     private Theater theaterSelect;
+    private Round roundSelect;
     private String theater, movieShowTime;
 
     private String nameEn;
@@ -89,8 +90,6 @@ public class AdminController {
                 movieShowTime = t1;
             }
         });
-
-
 
 
         nameEnTable.setCellValueFactory(new PropertyValueFactory<>("nameEn"));
@@ -175,7 +174,24 @@ public class AdminController {
 
                 moviesManage.addMovie(movie);
                 listMovieData.add(movie);
+                clear();
             }
+        }
+    }
+
+
+    @FXML public void handleRemoveMovieButton(ActionEvent event){
+        if (movieSelect != null){
+            if(cinema.getMovie1() == movieSelect) cinema.setMovie1(null);
+            if(cinema.getMovie2() == movieSelect) cinema.setMovie2(null);
+            if(cinema.getMovie3() == movieSelect) cinema.setMovie3(null);
+            if(cinema.getMovie4() == movieSelect) cinema.setMovie4(null);
+            if(cinema.getMovie5() == movieSelect) cinema.setMovie5(null);
+            if(cinema.getMovie6() == movieSelect) cinema.setMovie6(null);
+            moviesManage.removeMovie(movieSelect);
+            listMovieData.remove(movieSelect);
+            movieSelect = null;
+            clear();
         }
     }
 
@@ -193,66 +209,11 @@ public class AdminController {
         if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1) {
             index = roundTable.getSelectionModel().getSelectedIndex();
             if(index != -1){
+                roundSelect = listRoundData.get(index);
                 movieSelect = listRoundData.get(index).getMovie();
                 showMovieData();
+                movieComboBox.setValue("");
             }
-        }
-    }
-
-    @FXML public void handleTheaterComboBox(ActionEvent event){
-        addRoundTheaterLabel.setText("Theater");
-        theater = (String) theaterComboBox.getValue();
-        switch (theater){
-            case "Theater1": theaterSelect = cinema.getTheater1();break;
-            case "Theater2": theaterSelect = cinema.getTheater2();break;
-            case "Theater3": theaterSelect = cinema.getTheater3();break;
-            case "Theater4": theaterSelect = cinema.getTheater4();break;
-            case "Theater5": theaterSelect = cinema.getTheater5();break;
-            case "Theater6": theaterSelect = cinema.getTheater6();break;
-        }
-        listRoundData.clear();
-        for(Round r : theaterSelect.getRoundsList()){
-            listRoundData.add(r);
-        }
-        addRoundTheaterLabel.setText(theaterSelect.getName());
-    }
-
-    @FXML private void showMovieData(){
-        addRoundMovieLabel.setText(movieSelect.getNameEn());
-
-        nameEnTextField.setText(movieSelect.getNameEn());
-        nameThTextField.setText(movieSelect.getNameTh());
-        genreTextField.setText(movieSelect.getGenre());
-        descriptionTextArea.setText(movieSelect.getDescription());
-        lengthTextField.setText(movieSelect.getLength()+"");
-        rateComboBox.setValue(movieSelect.getRate());
-        releaseDateDatePicker.setValue(movieSelect.getReleaseDate());
-        imgPosterPath = movieSelect.getImgPosterPath();
-        posterImageView.setImage(new Image(imgPosterPath));
-        videoTextField.setText(movieSelect.getVideoPath());
-        systemType1CheckBox.setSelected(false);
-        systemType2CheckBox.setSelected(false);
-        systemType3CheckBox.setSelected(false);
-        systemType4CheckBox.setSelected(false);
-        systemType5CheckBox.setSelected(false);
-        for(String s : movieSelect.getSystemType()){
-            switch (s){
-                case "2D": systemType1CheckBox.setSelected(true);break;
-                case "4K": systemType2CheckBox.setSelected(true);break;
-                case "3D": systemType3CheckBox.setSelected(true);break;
-                case "IMAX Digital 2D": systemType4CheckBox.setSelected(true);break;
-                case "4DX": systemType5CheckBox.setSelected(true);break;
-            }
-        }
-
-    }
-
-    @FXML public void handleAddRoundButton(ActionEvent event){
-        if(theaterSelect != null && movieSelect != null){
-            String time = addRoundTimeTextField.getText();
-            Round round = new Round(theaterSelect, movieSelect, time);
-            theaterSelect.addRound(round);
-            listRoundData.add(round);
         }
     }
 
@@ -282,7 +243,77 @@ public class AdminController {
         showMovieData();
     }
 
-    @FXML public void loadMovieSelectPage(ActionEvent event){
+    @FXML public void handleTheaterComboBox(ActionEvent event){
+        addRoundTheaterLabel.setText("Theater");
+        theater = (String) theaterComboBox.getValue();
+        switch (theater){
+            case "Theater1": theaterSelect = cinema.getTheater1();break;
+            case "Theater2": theaterSelect = cinema.getTheater2();break;
+            case "Theater3": theaterSelect = cinema.getTheater3();break;
+            case "Theater4": theaterSelect = cinema.getTheater4();break;
+            case "Theater5": theaterSelect = cinema.getTheater5();break;
+            case "Theater6": theaterSelect = cinema.getTheater6();break;
+        }
+        listRoundData.clear();
+        for(Round r : theaterSelect.getRoundsList()){
+            listRoundData.add(r);
+        }
+        addRoundTheaterLabel.setText(theaterSelect.getName());
+    }
+
+    @FXML private void showMovieData(){
+        if(movieSelect != null){
+            addRoundMovieLabel.setText(movieSelect.getNameEn());
+
+            nameEnTextField.setText(movieSelect.getNameEn());
+            nameThTextField.setText(movieSelect.getNameTh());
+            genreTextField.setText(movieSelect.getGenre());
+            descriptionTextArea.setText(movieSelect.getDescription());
+            lengthTextField.setText(movieSelect.getLength()+"");
+            rateComboBox.setValue(movieSelect.getRate());
+            releaseDateDatePicker.setValue(movieSelect.getReleaseDate());
+            imgPosterPath = movieSelect.getImgPosterPath();
+            posterImageView.setImage(new Image(imgPosterPath));
+            videoTextField.setText(movieSelect.getVideoPath());
+            systemType1CheckBox.setSelected(false);
+            systemType2CheckBox.setSelected(false);
+            systemType3CheckBox.setSelected(false);
+            systemType4CheckBox.setSelected(false);
+            systemType5CheckBox.setSelected(false);
+            for(String s : movieSelect.getSystemType()){
+                switch (s){
+                    case "2D": systemType1CheckBox.setSelected(true);break;
+                    case "4K": systemType2CheckBox.setSelected(true);break;
+                    case "3D": systemType3CheckBox.setSelected(true);break;
+                    case "IMAX Digital 2D": systemType4CheckBox.setSelected(true);break;
+                    case "4DX": systemType5CheckBox.setSelected(true);break;
+                }
+            }
+        }
+    }
+
+    @FXML public void handleAddRoundButton(ActionEvent event){
+        if(theaterSelect != null && movieSelect != null){
+            String time = addRoundTimeTextField.getText();
+            Round round = new Round(theaterSelect, movieSelect, time);
+            theaterSelect.addRound(round);
+            listRoundData.add(round);
+            addRoundTimeTextField.setText("");
+            clear();
+        }
+    }
+
+    @FXML public void handleRemoveRoundButton(ActionEvent event){
+        if(theaterSelect != null && roundSelect != null){
+            theaterSelect.removeRound(roundSelect);
+            listRoundData.remove(roundSelect);
+            roundSelect = null;
+            clear();
+        }
+    }
+
+
+    @FXML public void handleMainPageButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/movie_select.fxml"));
@@ -409,6 +440,30 @@ public class AdminController {
         exportMovieData();
         exportShowTimeData();
         exportMovieShowTimeData();
+    }
+
+    @FXML public void clear(){
+        addRoundMovieLabel.setText("Title English");
+
+        nameEnTextField.setText("");
+        nameThTextField.setText("");
+        genreTextField.setText("");
+        descriptionTextArea.setText("");
+        lengthTextField.setText("");
+        rateComboBox.setValue("");
+        releaseDateDatePicker.setValue(null);
+        imgPosterPath = "";
+        posterImageView.setImage(new Image("/poster/ComingSoon.jpg"));
+        videoTextField.setText("");
+        systemType1CheckBox.setSelected(false);
+        systemType2CheckBox.setSelected(false);
+        systemType3CheckBox.setSelected(false);
+        systemType4CheckBox.setSelected(false);
+        systemType5CheckBox.setSelected(false);
+
+        movieSelect = null;
+        roundSelect = null;
+        movieComboBox.setValue("");
     }
 }
 

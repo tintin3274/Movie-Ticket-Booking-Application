@@ -29,9 +29,11 @@ public class LoadMovieShowTime {
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            //e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            //e.printStackTrace();
         }
     }
 

@@ -45,7 +45,7 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="384.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="เนื้อเรื่องย่อ">
+      <Text fill="WHITE" layoutX="384.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="เนื้อเรื่องย่อ">
          <font>
             <Font size="25.0" />
          </font>
@@ -65,7 +65,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextArea fx:id="textAreaDescription" editable="false" layoutX="384.0" layoutY="470.0" prefHeight="166.0" prefWidth="356.0" promptText="รายละเอียด" stylesheets="@../css/transparentTextArea.css" wrapText="true">
+      <TextArea fx:id="textAreaDescription" editable="false" layoutX="384.0" layoutY="465.0" prefHeight="170.0" prefWidth="356.0" promptText="รายละเอียด" stylesheets="@../css/transparentTextArea.css" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
@@ -210,16 +210,26 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Button layoutX="581.0" layoutY="669.0" mnemonicParsing="false" onAction="#loadMovieSelectPage" prefHeight="37.0" prefWidth="131.0" text="หน้าหลัก">
+      <Button layoutX="570.0" layoutY="655.0" mnemonicParsing="false" onAction="#handleMainPageButton" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #3366ff; -fx-background-radius: 25;" text="Main Page" textFill="WHITE">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <ImageView fx:id="moviePoster" fitHeight="460.0" fitWidth="330.0" layoutX="33.0" layoutY="176.0">
-         <image>
-            <Image url="@../poster/ComingSoon.jpg" />
-         </image>
-      </ImageView>
-      <MediaView fx:id="mv" fitHeight="200.0" fitWidth="355.56" layoutX="384.0" layoutY="176.0" />
+      <GridPane layoutX="33.0" layoutY="175.0" minHeight="227.0" minWidth="162.0" prefHeight="460.0" prefWidth="331.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="331.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="460.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fx:id="moviePoster" fitHeight="460.0" fitWidth="331.0" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../poster/ComingSoon.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <MediaView fx:id="mv" fitHeight="200.0" fitWidth="355.56" layoutX="384.0" layoutY="175.0" />
    </children>
 </AnchorPane>

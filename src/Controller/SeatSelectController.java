@@ -3,11 +3,7 @@ package Controller;
 import Class.*;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArrayBase;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -162,7 +158,7 @@ public class SeatSelectController {
                                 break;
                             }
                         }
-                        b.setOnAction(event -> handleSeatBtn(event));
+                        b.setOnAction(event -> handleSeatButton(event));
                         chairGridPane.add(b, i, j, 1, 1);
                     }
                 }
@@ -174,7 +170,7 @@ public class SeatSelectController {
         this.round = round;
     }
 
-    @FXML public void confirmBooking(){
+    @FXML public void handleConfirmBookingButton(){
         File dir = new File("csvData");
         if (!dir.exists()){
             dir.mkdirs();
@@ -213,7 +209,7 @@ public class SeatSelectController {
         }
     }
 
-    @FXML public void handleSeatBtn(ActionEvent e) {
+    @FXML public void handleSeatButton(ActionEvent e) {
         Button b = (Button) e.getSource();
         if(!seatsList.get(b.getId()).isBooked()){
             if(!seatsSelect.contains(b.getId()) && !buttonsList.contains(b)){
@@ -252,9 +248,9 @@ public class SeatSelectController {
         confirm.setDisable(seatsSelect.isEmpty());
     }
 
-    @FXML public void handleConfirmBtn(ActionEvent event) {
+    @FXML public void handleConfirmButton(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Booking");
+        alert.setTitle("Booking Confirmation");
         alert.setHeaderText("Do you want to confirm booking of the selected seat?");
         if (theater.getSeatType().equals("Normal")){
             alert.setContentText("ที่นั่งที่เลือก: Normal - "+theater.getSeatPrice("Normal")+" x "+amountNormal+"\n"+seatNo+"\n\nราคารวม: "+ price+" บาท");
@@ -265,7 +261,7 @@ public class SeatSelectController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            confirmBooking();
+            handleConfirmBookingButton();
             generateTicket();
 
             Button button = (Button) event.getSource();
@@ -300,7 +296,7 @@ public class SeatSelectController {
         }
     }
 
-    @FXML public void loadMovieSelectPage(ActionEvent event){
+    @FXML public void handleMainPageButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/movie_select.fxml"));
@@ -309,6 +305,20 @@ public class SeatSelectController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        stage.show();
+    }
+
+    @FXML public void handleBackButton(ActionEvent event){
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/theater_round_select.fxml"));
+        try {
+            stage.setScene(new Scene(loader.load(), 1280, 720));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        TheaterRoundSelectController theaterRoundSelectController = loader.getController();
+        theaterRoundSelectController.setMovie(movie);
         stage.show();
     }
 }

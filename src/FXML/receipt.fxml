@@ -14,17 +14,7 @@
             <Image url="@../image/background4.png" />
          </image>
       </ImageView>
-      <Button layoutX="557.0" layoutY="627.0" mnemonicParsing="false" onAction="#saveTicketImage" text="Save Ticket">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button layoutX="715.0" layoutY="627.0" mnemonicParsing="false" onAction="#loadMovieSelectPage" text="Home">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <ImageView fx:id="ticketImageView" fitHeight="693.0" fitWidth="390.0" layoutX="70.0" layoutY="15.0" preserveRatio="true">
+      <ImageView fx:id="ticketImageView" fitHeight="695.0" fitWidth="398.0" layoutX="70.0" layoutY="15.0" preserveRatio="true">
          <image>
             <Image url="@../image/ticketExample.PNG" />
          </image>
@@ -39,5 +29,15 @@
             <Font name="System Bold" size="45.0" />
          </font>
       </Label>
+      <Button layoutX="515.0" layoutY="615.0" mnemonicParsing="false" onAction="#handleSaveTicketButton" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #00cc99; -fx-background-radius: 25;" text="Save Ticket" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button layoutX="785.0" layoutY="615.0" mnemonicParsing="false" onAction="#handleMainPageButton" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #3366ff; -fx-background-radius: 25;" text="Main Page" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

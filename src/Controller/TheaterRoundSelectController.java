@@ -244,7 +244,7 @@ public class TheaterRoundSelectController {
         mp.stop();
     }
 
-    @FXML public void loadMovieSelectPage(ActionEvent event){
+    @FXML public void handleMainPageButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/movie_select.fxml"));
