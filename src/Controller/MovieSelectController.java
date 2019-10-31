@@ -33,7 +33,7 @@ public class MovieSelectController {
     private Movie movie5 = cinema.getMovie5();
     private Movie movie6 = cinema.getMovie6();
 
-    private Movie movie0 = new Movie("<<Coming Soon>>","<<เร็ว ๆ นี้>>","-","<<->>","/poster/ComingSoon.jpg",0, null,"<<...>>", "");
+    private static Movie movie0 = new Movie("<<Coming Soon>>","<<เร็ว ๆ นี้>>","-","<<->>","/poster/ComingSoon.jpg",0, null,"<<...>>", "");
 
     @FXML
     public void initialize() {

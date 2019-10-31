@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -232,15 +233,17 @@ public class AdminController {
 
     @FXML public void handleSetMovieButton(ActionEvent event){
         movieShowTime = (String) movieComboBox.getValue();
-        switch (movieShowTime){
-            case "Movie1": cinema.setMovie1(movieSelect);break;
-            case "Movie2": cinema.setMovie2(movieSelect);break;
-            case "Movie3": cinema.setMovie3(movieSelect);break;
-            case "Movie4": cinema.setMovie4(movieSelect);break;
-            case "Movie5": cinema.setMovie5(movieSelect);break;
-            case "Movie6": cinema.setMovie6(movieSelect);break;
+        if(movieShowTime != null){
+            switch (movieShowTime){
+                case "Movie1": cinema.setMovie1(movieSelect);break;
+                case "Movie2": cinema.setMovie2(movieSelect);break;
+                case "Movie3": cinema.setMovie3(movieSelect);break;
+                case "Movie4": cinema.setMovie4(movieSelect);break;
+                case "Movie5": cinema.setMovie5(movieSelect);break;
+                case "Movie6": cinema.setMovie6(movieSelect);break;
+            }
+            showMovieData();
         }
-        showMovieData();
     }
 
     @FXML public void handleTheaterComboBox(ActionEvent event){
@@ -274,7 +277,8 @@ public class AdminController {
             releaseDateDatePicker.setValue(movieSelect.getReleaseDate());
             imgPosterPath = movieSelect.getImgPosterPath();
             posterImageView.setImage(new Image(imgPosterPath));
-            videoTextField.setText(movieSelect.getVideoPath());
+            videoPath = movieSelect.getVideoPath();
+            videoTextField.setText(videoPath);
             systemType1CheckBox.setSelected(false);
             systemType2CheckBox.setSelected(false);
             systemType3CheckBox.setSelected(false);

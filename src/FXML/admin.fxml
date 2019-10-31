@@ -243,16 +243,16 @@
       </Pane>
       <Pane layoutX="26.0" layoutY="12.0" prefHeight="347.0" prefWidth="593.0" style="-fx-background-color: #ccccff;">
          <children>
-            <TableView fx:id="movieTable" layoutX="47.0" layoutY="41.0" onMouseClicked="#handleMovieTableClicked" prefHeight="200.0" prefWidth="500.0">
+            <TableView fx:id="movieTable" layoutX="37.0" layoutY="40.0" onMouseClicked="#handleMovieTableClicked" prefHeight="200.0" prefWidth="519.0">
               <columns>
                 <TableColumn fx:id="nameEnTable" prefWidth="130.0" resizable="false" text="ชื่อเรื่อง ภาษาอังกฤษ" />
                 <TableColumn fx:id="nameThTable" minWidth="2.0" prefWidth="130.0" resizable="false" text="ชื่อเรื่อง ภาษาไทย" />
                   <TableColumn fx:id="rateTable" minWidth="2.0" prefWidth="70.0" resizable="false" text="เรทผู้ชม" />
                   <TableColumn fx:id="lengthTable" minWidth="2.0" prefWidth="70.0" resizable="false" text="ความยาว" />
-                  <TableColumn fx:id="releaseDateTable" minWidth="2.0" prefWidth="100.0" resizable="false" text="วันที่เข้าฉาย" />
+                  <TableColumn fx:id="releaseDateTable" minWidth="2.0" prefWidth="118.0" resizable="false" text="วันที่เข้าฉาย" />
               </columns>
             </TableView>
-            <ComboBox fx:id="movieComboBox" layoutX="266.0" layoutY="251.0" onAction="#handleMovieComboBox" prefHeight="35.0" prefWidth="100.0" />
+            <ComboBox fx:id="movieComboBox" layoutX="261.0" layoutY="250.0" onAction="#handleMovieComboBox" prefHeight="35.0" prefWidth="120.0" />
             <Text layoutX="47.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="เลือกลำดับภาพยนตร์ในหน้าหลัก :">
                <font>
                   <Font size="16.0" />

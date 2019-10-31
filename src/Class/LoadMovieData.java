@@ -33,8 +33,7 @@ public class LoadMovieData {
             System.err.println(e.getMessage());
             //e.printStackTrace();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }

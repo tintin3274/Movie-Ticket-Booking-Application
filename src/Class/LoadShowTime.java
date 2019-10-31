@@ -32,6 +32,7 @@ public class LoadShowTime {
                     case "Theater6": theater = cinema.getTheater6(); break;
                 }
 
+                movie = null;
                 for(Movie m : moviesManage.getMovieHashSet()){
                     if(data[1].equals(m.getNameEn())){
                         movie = m;
@@ -39,15 +40,16 @@ public class LoadShowTime {
                     }
                 }
 
-                if(movie != null) theater.addRound(new Round(theater, movie, data[2]));
+                if(movie != null) {
+                    theater.addRound(new Round(theater, movie, data[2]));
+                }
             }
             reader.close();
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
             //e.printStackTrace();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }

@@ -17,6 +17,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -36,6 +37,7 @@ public class TheaterRoundSelectController {
     @FXML Label textTitleEn, textTitleTh, textGenre, textLength, textReleaseDate;
     @FXML TextArea textAreaDescription;
     @FXML MediaView mv;
+    @FXML Pane pane;
 
     //@FXML Text theaterName1, theaterName2, theaterName3, theaterName4, theaterName5, theaterName6;
     CinemaManage cinema = CinemaManage.getInstance();
@@ -45,6 +47,9 @@ public class TheaterRoundSelectController {
             @Override
             public void run() {
                 fullscreen = false;
+                pane.setVisible(false);
+                pane.setPrefWidth(1280);
+                pane.setPrefHeight(720);
 
                 textTitleEn.setText(movie.getNameEn());
                 textTitleTh.setText(movie.getNameTh());
@@ -58,8 +63,8 @@ public class TheaterRoundSelectController {
                 Media media = new Media(file.toURI().toString());
                 mp = new MediaPlayer(media);
 
-
                 mv.setMediaPlayer(mp);
+                mv.setPreserveRatio(true);
                 mp.setAutoPlay(true);
                 mp.setCycleCount(MediaPlayer.INDEFINITE);
 //                mp.setVolume(0.5);
@@ -72,7 +77,6 @@ public class TheaterRoundSelectController {
                         else if (event.getDeltaY() < 0) mp.seek(mp.getCurrentTime().add(Duration.seconds(-5)));
                     }
                 });
-
 
                 mv.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
@@ -88,13 +92,18 @@ public class TheaterRoundSelectController {
                         }
                         else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
                             fullscreen = !fullscreen;
-                            if(fullscreen == true){
-                                mv.setLayoutX(0);
-                                mv.setLayoutY(0);
+                            if(fullscreen){
+                                pane.setVisible(true);
                                 mv.setFitWidth(1280);
                                 mv.setFitHeight(720);
+
+                                mv.setLayoutX(0);
+                                double ratio = (double) media.getWidth()/(double) media.getHeight();
+                                double height = 1280/ratio;
+                                mv.setLayoutY(((720-height)/2));
                             }
-                            else if(fullscreen == false){
+                            else {
+                                pane.setVisible(false);
                                 mv.setLayoutX(384);
                                 mv.setLayoutY(176);
                                 mv.setFitWidth(355.56);

@@ -41,11 +41,13 @@ public class LoadBookingData {
                 for(Round r : roundsList){
                     if(r.getTime().equals(data[3])) round = r;
                 }
-                seatsList = round.getSeatsList();
-                seat = seatsList.get(data[4]);
-                switch (data[5]){
-                    case "Booking": if(account!=null && round!=null && round.getMovie().getNameEn().equals(data[2]) && !seat.isBooked()) seat.setBooking(account); break;
-                    case "Cancel" : seat.cancelBooking();
+                if(round != null){
+                    seatsList = round.getSeatsList();
+                    seat = seatsList.get(data[4]);
+                    switch (data[5]){
+                        case "Booking": if(account!=null && round!=null && round.getMovie().getNameEn().equals(data[2]) && !seat.isBooked()) seat.setBooking(account); break;
+                        case "Cancel" : seat.cancelBooking();
+                    }
                 }
             }
             reader.close();
@@ -53,8 +55,7 @@ public class LoadBookingData {
             System.err.println(e.getMessage());
             //e.printStackTrace();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }
