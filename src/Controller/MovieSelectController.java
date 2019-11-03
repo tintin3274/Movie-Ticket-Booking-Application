@@ -33,6 +33,7 @@ public class MovieSelectController {
     private Movie movie5 = cinema.getMovie5();
     private Movie movie6 = cinema.getMovie6();
 
+    //Use movie0 when not found movie data
     private static Movie movie0 = new Movie("<<Coming Soon>>","<<เร็ว ๆ นี้>>","-","<<->>","/poster/ComingSoon.jpg",0, null,"<<...>>", "");
 
     @FXML
@@ -40,6 +41,7 @@ public class MovieSelectController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                //initialize movie0 in select page if get movie form CinemaManage is null
                 if(movie1 == null) {movie1 = movie0; cinema.setMovie1(movie0);}
                 if(movie2 == null) {movie2 = movie0; cinema.setMovie2(movie0);}
                 if(movie3 == null) {movie3 = movie0; cinema.setMovie3(movie0);}
@@ -47,6 +49,7 @@ public class MovieSelectController {
                 if(movie5 == null) {movie5 = movie0; cinema.setMovie5(movie0);}
                 if(movie6 == null) {movie6 = movie0; cinema.setMovie6(movie0);}
 
+                //initialize display movie detail
                 moviePoster1.setImage(new Image(movie1.getImgPosterPath()));
                 moviePoster2.setImage(new Image(movie2.getImgPosterPath()));
                 moviePoster3.setImage(new Image(movie3.getImgPosterPath()));
@@ -60,11 +63,13 @@ public class MovieSelectController {
                 label5.setText(movie5.showShortDetail());
                 label6.setText(movie6.showShortDetail());
 
+                //If login with username "admin" will see Admin button
                 adminSettingButton.setVisible((cinema.getAccount().getUsername().equals("admin")));
             }
         });
     }
 
+    //Display effect ImageView when mouse in to image
     @FXML public void mouseEnterImage(MouseEvent event){
         ImageView effectedImage = (ImageView) event.getSource();
         DropShadow dropShadow = new DropShadow();
@@ -75,11 +80,13 @@ public class MovieSelectController {
         effectedImage.setEffect(dropShadow);
     }
 
+    //Remove effect ImageView when mouse out from image
     @FXML public void mouseExitImage(MouseEvent event){
         ImageView effectedImage = (ImageView) event.getSource();
         effectedImage.setEffect(null);
     }
 
+    //Load theater round select page when mouse click image
     @FXML public void mouseClickImage(MouseEvent event){
         Movie movie = null;
         ImageView image = (ImageView) event.getSource();
@@ -108,6 +115,7 @@ public class MovieSelectController {
         }
     }
 
+    //Load login page and remove Account from CinemaManage
     @FXML public void handleLogoutButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
@@ -121,6 +129,7 @@ public class MovieSelectController {
         stage.show();
     }
 
+    //Load admin page
     @FXML public void handleAdminSettingButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();

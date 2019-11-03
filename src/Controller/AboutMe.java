@@ -10,8 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AboutMe {
-    @FXML
-    public void handleBackToLoginPageButton(ActionEvent event){
+    //Load login page
+    @FXML public void handleBackToLoginPageButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/login.fxml"));

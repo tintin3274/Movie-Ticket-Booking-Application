@@ -16,6 +16,7 @@ public class Round {
         createSeats();
     }
 
+    //Create object seats amount 20 seat per row from A-O
     private void createSeats(){
         char alphabet = 65+14;
         for (int i = 0; i < 20; i++){

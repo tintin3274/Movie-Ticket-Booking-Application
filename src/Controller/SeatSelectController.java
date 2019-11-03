@@ -57,6 +57,7 @@ public class SeatSelectController {
                 movie = round.getMovie();
                 theater = round.getTheater();
 
+                //Display information of movie and seat
                 textTitleEn.setText(movie.getNameEn());
                 textTitleTh.setText(movie.getNameTh());
                 textGenre.setText(movie.getGenre());
@@ -73,6 +74,7 @@ public class SeatSelectController {
                     priceHoneymoon.setText("");
                 }
 
+                //Display rate of movie and system of theater
                 ImageView image;
                 switch (movie.getRate()){
                     case "ทั่วไป": image = new ImageView("/image/image_detail/rating_1.png");break;
@@ -84,6 +86,7 @@ public class SeatSelectController {
                 }
                 image.setFitWidth(67);
                 image.setFitHeight(35);
+
                 rateSystemGridPane.add(image, 0,0);
                 switch (theater.getSystemType()){
                     case "2D": image = new ImageView("/image/image_detail/digital.png");break;
@@ -97,6 +100,7 @@ public class SeatSelectController {
                 image.setFitHeight(35);
                 rateSystemGridPane.add(image, 1,0);
 
+                //initialize seat and display
                 seatsList = round.getSeatsList();
                 char alphabet = 65+14;
                 for (int i = 0; i < 20; i++) {
@@ -170,6 +174,7 @@ public class SeatSelectController {
         this.round = round;
     }
 
+    //Write file BookingData.csv for save new booking data
     @FXML public void handleConfirmBookingButton(){
         File dir = new File("csvData");
         if (!dir.exists()){
@@ -191,6 +196,7 @@ public class SeatSelectController {
         }
     }
 
+    //Write file BookingData.csv for save new cancel booking data
     @FXML public void cancelBooking(Button b){
         File dir = new File("csvData");
         if (!dir.exists()){
@@ -209,6 +215,7 @@ public class SeatSelectController {
         }
     }
 
+    //Change seat display status And add or remove seat from seatsSelect And display seatsSelect and price
     @FXML public void handleSeatButton(ActionEvent e) {
         Button b = (Button) e.getSource();
         if(!seatsList.get(b.getId()).isBooked()){
@@ -248,6 +255,7 @@ public class SeatSelectController {
         confirm.setDisable(seatsSelect.isEmpty());
     }
 
+    //Show DialogBox booking confirmation
     @FXML public void handleConfirmButton(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Booking Confirmation");
@@ -259,6 +267,7 @@ public class SeatSelectController {
             alert.setContentText("ที่นั่งที่เลือก: Normal - "+theater.getSeatPrice("Normal")+" x "+amountNormal+" | Honeymoon - "+theater.getSeatPrice("Honeymoon")+ " x "+amountHoneymoon+"\n"+seatNo+"\n\nราคารวม: "+ String.format("%,.2f", price)+" บาท");
         }
 
+        //If select OK booking will complete and Load receipt page
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             handleConfirmBookingButton();
@@ -278,6 +287,7 @@ public class SeatSelectController {
         }
     }
 
+    //Pass information booking to ticket page for generate ticket
     @FXML public void generateTicket(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/ticket.fxml"));
@@ -296,6 +306,7 @@ public class SeatSelectController {
         }
     }
 
+    //Load movie select page
     @FXML public void handleMainPageButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
@@ -308,6 +319,7 @@ public class SeatSelectController {
         stage.show();
     }
 
+    //Load movie select page
     @FXML public void handleBackButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();

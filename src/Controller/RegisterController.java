@@ -29,6 +29,7 @@ public class RegisterController {
 
     }
 
+    //Create object Account and add to AccountsManage
     @FXML public void handleRegisterButton(ActionEvent event){
         String username = usernameTextField.getText();
         String password = passwordField.getText();
@@ -85,6 +86,7 @@ public class RegisterController {
         }
     }
 
+    //Load movie select page
     @FXML public void handleLoginButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();

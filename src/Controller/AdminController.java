@@ -67,6 +67,7 @@ public class AdminController {
     final ObservableList<Round> listRoundData = FXCollections.observableArrayList();
 
     @FXML public void initialize(){
+        //initialize rate ComboBox
         rateComboBox.getItems().addAll("ทั่วไป", "น 13+", "น 15+", "น 18+", "ฉ 20+", "-");
         rateComboBox.setEditable(false);
         rateComboBox.setValue("-");
@@ -76,6 +77,7 @@ public class AdminController {
             }
         });
 
+        //initialize theater ComboBox
         theaterComboBox.getItems().addAll("Theater1", "Theater2", "Theater3", "Theater4", "Theater5", "Theater6");
         rateComboBox.setEditable(false);
         rateComboBox.valueProperty().addListener(new ChangeListener<String>() {
@@ -84,6 +86,7 @@ public class AdminController {
             }
         });
 
+        //initialize movie ComboBox
         movieComboBox.getItems().addAll("Movie1", "Movie2", "Movie3", "Movie4", "Movie5", "Movie6");
         movieComboBox.setEditable(false);
         movieComboBox.valueProperty().addListener(new ChangeListener<String>() {
@@ -92,7 +95,7 @@ public class AdminController {
             }
         });
 
-
+        //initialize movie TableView
         nameEnTable.setCellValueFactory(new PropertyValueFactory<>("nameEn"));
         nameThTable.setCellValueFactory(new PropertyValueFactory<>("nameTh"));
         rateTable.setCellValueFactory(new PropertyValueFactory<>("rate"));
@@ -101,13 +104,14 @@ public class AdminController {
 
         movieTable.setItems(listMovieData);
 
-
+        //initialize round TableView
         timeRoundTable.setCellValueFactory(new PropertyValueFactory<>("time"));
         roundTable.setItems(listRoundData);
 
         listMovieData.addAll(moviesManage.getMovieHashSet());
     }
 
+    //Browse file image poster to collect path
     @FXML public void handleBrowseImageButton(ActionEvent event){
         File dir = new File("poster");
         if (!dir.exists()){
@@ -131,6 +135,7 @@ public class AdminController {
         imgPosterPath = path;
     }
 
+    //Browse file video trailer to collect path
     @FXML public void handleBrowseVideoButton(ActionEvent event){
         File dir = new File("trailer");
         if (!dir.exists()){
@@ -152,6 +157,7 @@ public class AdminController {
         videoPath = path;
     }
 
+    //Create object movie then Add movie to moviesManage and movie TableView
     @FXML public void handleAddMovieButton(ActionEvent event){
         if(!nameEnTextField.getText().equals("") && !nameThTextField.getText().equals("") && !genreTextField.getText().equals("") && !descriptionTextArea.getText().equals("") && !lengthTextField.getText().equals("") && releaseDateDatePicker.getValue()!=null && imgPosterPath!=null && videoPath!=null){
             boolean isNumeric = lengthTextField.getText().chars().allMatch(Character::isDigit);
@@ -181,7 +187,7 @@ public class AdminController {
         }
     }
 
-
+    //Remove object movie from moviesManage and movie TableView
     @FXML public void handleRemoveMovieButton(ActionEvent event){
         if (movieSelect != null){
             if(cinema.getMovie1() == movieSelect) cinema.setMovie1(null);
@@ -197,6 +203,7 @@ public class AdminController {
         }
     }
 
+    //Select object movie from movie TableView
     @FXML private void handleMovieTableClicked(MouseEvent event){
         if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1) {
             index = movieTable.getSelectionModel().getSelectedIndex();
@@ -207,6 +214,7 @@ public class AdminController {
         }
     }
 
+    //Select object round from round TableView
     @FXML private void handleRoundTableClicked(MouseEvent event){
         if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1) {
             index = roundTable.getSelectionModel().getSelectedIndex();
@@ -219,6 +227,7 @@ public class AdminController {
         }
     }
 
+    //Select object movie in ComboBox by get movie object from CinemaManage
     @FXML public void handleMovieComboBox(ActionEvent event){
         movieShowTime = (String) movieComboBox.getValue();
         switch (movieShowTime){
@@ -232,6 +241,7 @@ public class AdminController {
         showMovieData();
     }
 
+    //Set object movie selected keep in CinemaManage
     @FXML public void handleSetMovieButton(ActionEvent event){
         movieShowTime = (String) movieComboBox.getValue();
         if(movieShowTime != null){
@@ -247,6 +257,7 @@ public class AdminController {
         }
     }
 
+    //Select object theater in ComboBox by get theater object from CinemaManage and get round from theater add to round TableView
     @FXML public void handleTheaterComboBox(ActionEvent event){
         addRoundTheaterLabel.setText("Theater");
         theater = (String) theaterComboBox.getValue();
@@ -265,6 +276,7 @@ public class AdminController {
         addRoundTheaterLabel.setText(theaterSelect.getName());
     }
 
+    //Display information of selected movie object
     @FXML private void showMovieData(){
         if(movieSelect != null){
             addRoundMovieLabel.setText(movieSelect.getNameEn());
@@ -297,6 +309,7 @@ public class AdminController {
         }
     }
 
+    //Create object round and add to round TableView
     @FXML public void handleAddRoundButton(ActionEvent event){
         if(theaterSelect != null && movieSelect != null && !addRoundTimeTextField.getText().equals("")){
             String time = addRoundTimeTextField.getText();
@@ -308,6 +321,7 @@ public class AdminController {
         }
     }
 
+    //Remove object round from round TableView
     @FXML public void handleRemoveRoundButton(ActionEvent event){
         if(theaterSelect != null && roundSelect != null){
             theaterSelect.removeRound(roundSelect);
@@ -317,7 +331,7 @@ public class AdminController {
         }
     }
 
-
+    //Load movie select page
     @FXML public void handleMainPageButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
@@ -330,6 +344,7 @@ public class AdminController {
         stage.show();
     }
 
+    //Write file MovieData.csv for save movie data
     @FXML public void exportMovieData(){
         File dir = new File("csvData");
         if (!dir.exists()){
@@ -369,6 +384,7 @@ public class AdminController {
         }
     }
 
+    //Write file ShowTimeData.csv for save round data
     @FXML public void exportShowTimeData(){
         File dir = new File("csvData");
         if (!dir.exists()){
@@ -416,6 +432,7 @@ public class AdminController {
         }
     }
 
+    //Write file MoviesShowingData.csv for save movie order in movie select page data
     @FXML public void exportMoviesShowingData(){
         File dir = new File("csvData");
         if (!dir.exists()){
@@ -441,6 +458,7 @@ public class AdminController {
         }
     }
 
+    //Write file BookingData.csv for save booking data
     @FXML public void exportBookingData(){
         File dir = new File("csvData");
         if (!dir.exists()){
@@ -482,6 +500,7 @@ public class AdminController {
         }
     }
 
+    //Call all save data method
     @FXML public void exportAll(){
         exportMovieData();
         exportShowTimeData();
@@ -489,6 +508,7 @@ public class AdminController {
         exportBookingData();
     }
 
+    //Clear field and select object
     @FXML public void clear(){
         addRoundMovieLabel.setText("Title English");
 

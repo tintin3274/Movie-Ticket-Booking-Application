@@ -99,6 +99,7 @@ public class TicketController {
         this.price = price;
     }
 
+    //Snapshot data in AnchorPane to image and set to image
     @FXML private void generateTicket(){
         image = ticketAnchorPane.snapshot(new SnapshotParameters(), null);
     }

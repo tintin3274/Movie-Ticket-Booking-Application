@@ -31,6 +31,7 @@ public class ReceiptController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                //initialize by get ref and ticket from ticket page and display ticket
                 ticket = TicketController.image;
                 ref = TicketController.ref;
                 ticketImageView.setImage(TicketController.image);
@@ -38,7 +39,7 @@ public class ReceiptController {
         });
     }
 
-
+    //Write image file from Image ticket to save image ticket
     @FXML public void handleSaveTicketButton() {
         File dir = new File("ticketsImage");
         if (!dir.exists()){
@@ -58,8 +59,7 @@ public class ReceiptController {
 
         if(file != null){
             try {
-                //Pad the capture area
-                //WritableImage writableImage = ticketAnchorPane.snapshot(new SnapshotParameters(), null);
+                //Cast Image snapshot to WritableImage
                 WritableImage writableImage = (WritableImage) ticket;
                 RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
                 //Write the snapshot to the chosen file
@@ -70,6 +70,7 @@ public class ReceiptController {
         }
     }
 
+    //Load movie select page
     @FXML public void handleMainPageButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();

@@ -27,6 +27,7 @@ public class MainProgram extends Application {
         LoadMoviesShowingData loadMoviesShowingData = new LoadMoviesShowingData();
         LoadShowTime loadShowTime = new LoadShowTime();
 
+        //Call method read .csv file
         loadAccountData.readAccountData();
         loadMovieData.readMovieData();
         loadMoviesShowingData.readMoviesShowingData();

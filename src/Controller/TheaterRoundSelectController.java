@@ -46,11 +46,13 @@ public class TheaterRoundSelectController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                //initialize Pane for MediaView
                 fullscreen = false;
                 pane.setVisible(false);
                 pane.setPrefWidth(1280);
                 pane.setPrefHeight(720);
 
+                //Display information of movie
                 textTitleEn.setText(movie.getNameEn());
                 textTitleTh.setText(movie.getNameTh());
                 textGenre.setText(movie.getGenre());
@@ -59,6 +61,7 @@ public class TheaterRoundSelectController {
                 moviePoster.setImage(new Image(movie.getImgPosterPath()));
                 textAreaDescription.setText(movie.getDescription());
 
+                //Display video trailer and initialize player function
                 File file = new File(movie.getVideoPath());
                 Media media = new Media(file.toURI().toString());
                 mp = new MediaPlayer(media);
@@ -112,6 +115,7 @@ public class TheaterRoundSelectController {
                     }
                 });
 
+                //Display rate and system of movie
                 ImageView image;
                 switch (movie.getRate()){
                     case "ทั่วไป": image = new ImageView("/image/image_detail/rating_1.png");break;
@@ -141,6 +145,7 @@ public class TheaterRoundSelectController {
                     i++;
                 }
 
+                //Display round from each theater
                 i=1;
                 for(Round round: cinema.getTheater1().getRoundsList()){
                     if(round.getMovie() == movie){
@@ -226,6 +231,7 @@ public class TheaterRoundSelectController {
         this.movie = movie;
     }
 
+    //Select round and Load seat select page
     @FXML public void handleRoundButton(ActionEvent event) {
         Button button = (Button) event.getSource();
         //System.out.println(button.getId());
@@ -252,6 +258,7 @@ public class TheaterRoundSelectController {
         mp.stop();
     }
 
+    //Load movie select page
     @FXML public void handleMainPageButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();

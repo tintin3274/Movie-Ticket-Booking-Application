@@ -29,6 +29,7 @@ public class LoginController {
 
     }
 
+    //Check Input Username and Password and set Account to CinemaManage
     @FXML public void handleLoginButton(ActionEvent event){
         if(accountsManage.haveAccountAvailable(usernameTextField.getText())){
             if(accountsManage.loginAccount(usernameTextField.getText(), passwordField.getText())){
@@ -45,6 +46,7 @@ public class LoginController {
         }
     }
 
+    //Load register page
     @FXML public void handleSignUpButton(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
@@ -57,6 +59,7 @@ public class LoginController {
         stage.show();
     }
 
+    //Load movie select page
     @FXML public void loginSuccess(ActionEvent event){
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
@@ -69,6 +72,7 @@ public class LoginController {
         stage.show();
     }
 
+    //Load information page
     @FXML public void handleInfoButton(){
         Stage stage = (Stage) display.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/aboutme.fxml"));
