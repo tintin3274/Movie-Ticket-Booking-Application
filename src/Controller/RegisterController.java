@@ -37,7 +37,11 @@ public class RegisterController {
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
 
-        if(!username.equals("") && !password.equals("") && !confirmPassword.equals("") && !email.equals("") && !firstName.equals("") && !lastName.equals("")){
+        if(username.contains(",") || password.contains(",") ||confirmPassword.contains(",") ||email.contains(",") ||firstName.contains(",") ||lastName.contains(",")){
+            display.setText("Create account failed. Information must not contain symbol , .");
+        }
+
+        else if(!username.equals("") && !password.equals("") && !confirmPassword.equals("") && !email.equals("") && !firstName.equals("") && !lastName.equals("")){
             if(!accountsManage.haveAccountAvailable(username)){
                 if(password.equals(confirmPassword)){
                     if(accountsManage.createAccount(username, password, email, firstName, lastName)) {
@@ -53,7 +57,7 @@ public class RegisterController {
                             writer.write(username+","+password+","+email+","+firstName+","+lastName);
                             writer.newLine();
                             writer.close();
-                            display.setText("Create account success. You can now Sign In able.");
+                            display.setText("Create account success. You can now Sign In.");
 
                         } catch (IOException e) {
                             e.printStackTrace();

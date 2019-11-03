@@ -13,7 +13,7 @@ public class MainProgram extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/login.fxml"));
-        primaryStage.setTitle("Booking Movies Tickets 6110405949");
+        primaryStage.setTitle("Movie Ticket Booking Application by Jittin Jindanoraseth 6110405949");
         primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.show();
         primaryStage.setResizable(false);
@@ -24,12 +24,12 @@ public class MainProgram extends Application {
         LoadAccountData loadAccountData = new LoadAccountData();
         LoadBookingData loadBookingData = new LoadBookingData();
         LoadMovieData loadMovieData = new LoadMovieData();
-        LoadMovieShowTime loadMovieShowTime = new LoadMovieShowTime();
+        LoadMoviesShowingData loadMoviesShowingData = new LoadMoviesShowingData();
         LoadShowTime loadShowTime = new LoadShowTime();
 
         loadAccountData.readAccountData();
         loadMovieData.readMovieData();
-        loadMovieShowTime.readMovieShowTimeData();
+        loadMoviesShowingData.readMoviesShowingData();
         loadShowTime.readShowTimeData();
         loadBookingData.readBookingData();
 

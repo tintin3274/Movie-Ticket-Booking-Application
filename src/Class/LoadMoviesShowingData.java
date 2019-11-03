@@ -2,11 +2,11 @@ package Class;
 
 import java.io.*;
 
-public class LoadMovieShowTime {
+public class LoadMoviesShowingData {
     private CinemaManage cinema = CinemaManage.getInstance();
     private MoviesManage moviesManage = MoviesManage.getInstance();
 
-    public void readMovieShowTimeData(){
+    public void readMoviesShowingData(){
         String line;
         String[] data;
         File dir = new File("csvData");
@@ -14,7 +14,7 @@ public class LoadMovieShowTime {
             dir.mkdirs();
         }
         try {
-            File file = new File("csvData/MovieShowTimeData.csv");
+            File file = new File("csvData/MoviesShowingData.csv");
             FileReader fileReader = new FileReader(file);
             BufferedReader reader = new BufferedReader(fileReader);
 

@@ -67,7 +67,6 @@ public class TheaterRoundSelectController {
                 mv.setPreserveRatio(true);
                 mp.setAutoPlay(true);
                 mp.setCycleCount(MediaPlayer.INDEFINITE);
-//                mp.setVolume(0.5);
                 mv.setOnScroll(new EventHandler<ScrollEvent>() {
                     @Override
                     public void handle(ScrollEvent event) {

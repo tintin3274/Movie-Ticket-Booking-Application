@@ -28,10 +28,6 @@ public class Movie {
         this.videoPath = videoPath;
     }
 
-    public Movie(String nameEn, String nameTh, String rate, String genre, String imgPosterPath, int length, LocalDate releaseDate) {
-        this(nameEn, nameTh, rate, genre, imgPosterPath, length, releaseDate, "", "");
-    }
-
     public String getNameEn() {
         return nameEn;
     }

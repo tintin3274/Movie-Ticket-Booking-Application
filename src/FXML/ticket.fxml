@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="ticketAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1920.0" prefWidth="1080.0" style="-fx-background-color: #d3d3d3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TicketController">
    <children>
-      <Label fx:id="nameLabel" layoutX="180.0" layoutY="1745.0" prefHeight="45.0" prefWidth="450.0" text="Fristname Lastname">
+      <Label fx:id="nameLabel" layoutX="180.0" layoutY="1745.0" prefHeight="45.0" prefWidth="460.0" text="Fristname Lastname">
          <font>
             <Font size="30.0" />
          </font>
@@ -101,9 +101,9 @@
             </Label>
          </children>
       </GridPane>
-      <Label fx:id="priceLabel" layoutX="180.0" layoutY="1795.0" prefHeight="45.0" prefWidth="450.0" text="PRICE Vat Included : XXX baht">
+      <Label fx:id="priceLabel" layoutX="180.0" layoutY="1795.0" prefHeight="45.0" prefWidth="460.0" text="PRICE Vat Included : XXX baht">
          <font>
-            <Font size="30.0" />
+            <Font size="24.0" />
          </font>
       </Label>
       <ImageView fx:id="qrCodeImageView" fitHeight="250.0" fitWidth="250.0" layoutX="652.0" layoutY="1645.0" pickOnBounds="true" preserveRatio="true">
@@ -111,7 +111,7 @@
             <Image url="@../image/qrExample.png" />
          </image>
       </ImageView>
-      <Label fx:id="refLabel" layoutX="180.0" layoutY="1845.0" prefHeight="45.0" prefWidth="450.0" text="REF No. yyyy-MM-ddThh:mm:ss.sss">
+      <Label fx:id="refLabel" layoutX="180.0" layoutY="1845.0" prefHeight="45.0" prefWidth="460.0" text="REF No. yyyy-MM-ddThh:mm:ss.sss">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>

@@ -63,7 +63,7 @@ public class SeatSelectController {
                 textLength.setText(movie.getLength()+" นาที");
                 textReleaseDate.setText(""+movie.getReleaseDate());
                 theaterName.setText(theater.getName()+"\nRound "+round.getTime());
-                textPrice.setText(price+" บาท");
+                textPrice.setText(String.format("%,.2f", price)+" บาท");
                 priceNormal.setText("Normal "+theater.getSeatPrice("Normal")+" บาท");
                 priceHoneymoon.setText("Honeymoon "+theater.getSeatPrice("Honeymoon")+" บาท");
                 moviePoster.setImage(new Image(movie.getImgPosterPath()));
@@ -244,7 +244,7 @@ public class SeatSelectController {
         if(!seatsSelect.isEmpty()) seatNo = seatsSelect.toString().replace("[", "").replace("]", "");
         else seatNo = "Selected Seats";
         seatsSelectDisplay.setText(seatNo);
-        textPrice.setText(price+" บาท");
+        textPrice.setText(String.format("%,.2f", price)+" บาท");
         confirm.setDisable(seatsSelect.isEmpty());
     }
 
@@ -253,10 +253,10 @@ public class SeatSelectController {
         alert.setTitle("Booking Confirmation");
         alert.setHeaderText("Do you want to confirm booking of the selected seat?");
         if (theater.getSeatType().equals("Normal")){
-            alert.setContentText("ที่นั่งที่เลือก: Normal - "+theater.getSeatPrice("Normal")+" x "+amountNormal+"\n"+seatNo+"\n\nราคารวม: "+ price+" บาท");
+            alert.setContentText("ที่นั่งที่เลือก: Normal - "+theater.getSeatPrice("Normal")+" x "+amountNormal+"\n"+seatNo+"\n\nราคารวม: "+ String.format("%,.2f", price)+" บาท");
         }
         else {
-            alert.setContentText("ที่นั่งที่เลือก: Normal - "+theater.getSeatPrice("Normal")+" x "+amountNormal+" | Honeymoon - "+theater.getSeatPrice("Honeymoon")+ " x "+amountHoneymoon+"\n"+seatNo+"\n\nราคารวม: "+ price+" บาท");
+            alert.setContentText("ที่นั่งที่เลือก: Normal - "+theater.getSeatPrice("Normal")+" x "+amountNormal+" | Honeymoon - "+theater.getSeatPrice("Honeymoon")+ " x "+amountHoneymoon+"\n"+seatNo+"\n\nราคารวม: "+ String.format("%,.2f", price)+" บาท");
         }
 
         Optional<ButtonType> result = alert.showAndWait();

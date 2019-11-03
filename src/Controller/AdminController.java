@@ -16,13 +16,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class AdminController {
     @FXML TextField nameEnTextField, nameThTextField, genreTextField, lengthTextField, addRoundTimeTextField, videoTextField;
@@ -163,6 +163,7 @@ public class AdminController {
                 rate = (String) rateComboBox.getValue();
                 genre = genreTextField.getText();
                 description = descriptionTextArea.getText();
+                if(description.contains("\n")) description= description.replaceAll("\n", " ");
                 releaseDate = releaseDateDatePicker.getValue();
 
                 movie = new Movie(nameEn, nameTh, rate, genre, imgPosterPath, length, releaseDate, description, videoPath);
@@ -297,7 +298,7 @@ public class AdminController {
     }
 
     @FXML public void handleAddRoundButton(ActionEvent event){
-        if(theaterSelect != null && movieSelect != null){
+        if(theaterSelect != null && movieSelect != null && !addRoundTimeTextField.getText().equals("")){
             String time = addRoundTimeTextField.getText();
             Round round = new Round(theaterSelect, movieSelect, time);
             theaterSelect.addRound(round);
@@ -415,13 +416,13 @@ public class AdminController {
         }
     }
 
-    @FXML public void exportMovieShowTimeData(){
+    @FXML public void exportMoviesShowingData(){
         File dir = new File("csvData");
         if (!dir.exists()){
             dir.mkdirs();
         }
         try {
-            File file = new File("csvData/MovieShowTimeData.csv");
+            File file = new File("csvData/MoviesShowingData.csv");
             file.createNewFile();
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter writer = new BufferedWriter(fileWriter);
@@ -440,10 +441,52 @@ public class AdminController {
         }
     }
 
+    @FXML public void exportBookingData(){
+        File dir = new File("csvData");
+        if (!dir.exists()){
+            dir.mkdirs();
+        }
+        try {
+            File file = new File("csvData/BookingData.csv");
+            file.createNewFile();
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+
+            ArrayList<Round> roundsList;
+            for(int i=1; i<=6; i++){
+                roundsList = null;
+                switch (i){
+                    case 1: roundsList = cinema.getTheater1().getRoundsList(); break;
+                    case 2: roundsList = cinema.getTheater2().getRoundsList(); break;
+                    case 3: roundsList = cinema.getTheater3().getRoundsList(); break;
+                    case 4: roundsList = cinema.getTheater4().getRoundsList(); break;
+                    case 5: roundsList = cinema.getTheater5().getRoundsList(); break;
+                    case 6: roundsList = cinema.getTheater6().getRoundsList(); break;
+                }
+
+                if(roundsList != null){
+                    for(Round r : roundsList){
+                        for (String k : r.getSeatsList().keySet()){
+                            if(r.getSeatsList().get(k).isBooked()){
+                                writer.write(r.getSeatsList().get(k).getAccount().getUsername()+","+r.getTheater().getName()+","+r.getMovie().getNameEn()+","+r.getTime()+","+k+","+"Booking");
+                                writer.newLine();
+                            }
+                        }
+                    }
+                }
+            }
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML public void exportAll(){
         exportMovieData();
         exportShowTimeData();
-        exportMovieShowTimeData();
+        exportMoviesShowingData();
+        exportBookingData();
     }
 
     @FXML public void clear(){
@@ -470,5 +513,3 @@ public class AdminController {
         movieComboBox.setValue("");
     }
 }
-
-

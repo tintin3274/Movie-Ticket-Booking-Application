@@ -21,22 +21,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminController">
    <children>
-      <Button layoutX="456.0" layoutY="663.0" mnemonicParsing="false" onAction="#handleMainPageButton" prefHeight="35.0" prefWidth="130.0" text="หน้าหลัก">
+      <Button layoutX="425.0" layoutY="639.0" mnemonicParsing="false" onAction="#handleMainPageButton" prefHeight="51.0" prefWidth="150.0" text="หน้าหลัก">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="286.0" layoutY="663.0" mnemonicParsing="false" onAction="#exportAll" prefHeight="35.0" prefWidth="130.0" text="Export All">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Text layoutX="380.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="เวลาฉายในโรงภาพยนตร์ :">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Pane layoutX="299.0" layoutY="393.0" prefHeight="225.0" prefWidth="320.0" style="-fx-background-color: #ccffcc;">
+      <Pane layoutX="299.0" layoutY="378.0" prefHeight="225.0" prefWidth="320.0" style="-fx-background-color: #ccffcc;">
          <children>
             <Label layoutX="73.0" layoutY="10.0" text="เพิ่มรอบฉายภาพยนตร์">
                <font>
@@ -48,7 +38,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <TextField fx:id="addRoundTimeTextField" layoutX="110.0" layoutY="122.0" prefHeight="37.0" prefWidth="100.0">
+            <TextField fx:id="addRoundTimeTextField" layoutX="110.0" layoutY="122.0" prefHeight="37.0" prefWidth="100.0" promptText="hh:mm">
                <font>
                   <Font size="16.0" />
                </font>
@@ -82,7 +72,7 @@
       </Pane>
       <Pane layoutX="625.0" layoutY="12.0" prefHeight="697.0" prefWidth="630.0" style="-fx-background-color: #ccffff;">
          <children>
-            <TextField fx:id="nameEnTextField" layoutX="153.0" layoutY="46.0" prefHeight="35.0" prefWidth="450.0">
+            <TextField fx:id="nameEnTextField" layoutX="153.0" layoutY="46.0" prefHeight="35.0" prefWidth="450.0" promptText="Title English">
                <font>
                   <Font size="16.0" />
                </font>
@@ -92,7 +82,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="nameThTextField" layoutX="153.0" layoutY="96.0" prefHeight="35.0" prefWidth="450.0">
+            <TextField fx:id="nameThTextField" layoutX="153.0" layoutY="96.0" prefHeight="35.0" prefWidth="450.0" promptText="Title Thai">
                <font>
                   <Font size="16.0" />
                </font>
@@ -102,7 +92,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="genreTextField" layoutX="153.0" layoutY="146.0" prefHeight="35.0" prefWidth="450.0">
+            <TextField fx:id="genreTextField" layoutX="153.0" layoutY="146.0" prefHeight="35.0" prefWidth="450.0" promptText="Genre">
                <font>
                   <Font size="16.0" />
                </font>
@@ -112,7 +102,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextArea fx:id="descriptionTextArea" layoutX="153.0" layoutY="196.0" prefHeight="150.0" prefWidth="450.0" wrapText="true">
+            <TextArea fx:id="descriptionTextArea" layoutX="153.0" layoutY="196.0" prefHeight="150.0" prefWidth="450.0" promptText="Description" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
@@ -127,7 +117,7 @@
                   <Font size="16.0" />
                </font>
                <graphic>
-                  <TextField fx:id="lengthTextField" prefHeight="35.0" prefWidth="100.0">
+                  <TextField fx:id="lengthTextField" prefHeight="35.0" prefWidth="100.0" promptText="Length">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -139,13 +129,13 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <DatePicker fx:id="releaseDateDatePicker" layoutX="448.0" layoutY="366.0" prefHeight="35.0" prefWidth="155.0" />
+            <DatePicker fx:id="releaseDateDatePicker" layoutX="448.0" layoutY="366.0" prefHeight="35.0" prefWidth="155.0" promptText="Release Date" />
             <Label layoutX="365.0" layoutY="371.0" text="วันที่เข้าฉาย :">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <GridPane hgap="142.0" layoutX="455.0" layoutY="416.0" prefHeight="200.0" prefWidth="142.0" vgap="200.0">
+            <GridPane hgap="142.0" layoutX="456.0" layoutY="416.0" prefHeight="200.0" prefWidth="150.0" vgap="200.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -153,7 +143,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="posterImageView" fitHeight="200.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="posterImageView" fitHeight="200.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
                         <Image url="@../poster/ComingSoon.jpg" />
                      </image>
@@ -227,7 +217,7 @@
                </font>
             </Label>
             <Button fx:id="browseImageButton" layoutX="389.0" layoutY="453.0" mnemonicParsing="false" onAction="#handleBrowseImageButton" prefHeight="25.0" prefWidth="57.0" text="เลือก" />
-            <TextField fx:id="videoTextField" layoutX="459.0" layoutY="624.0" prefHeight="25.0" prefWidth="142.0" />
+            <TextField fx:id="videoTextField" layoutX="459.0" layoutY="624.0" prefHeight="25.0" prefWidth="142.0" promptText="Trailer" />
             <Label layoutX="393.0" layoutY="623.0" prefWidth="61.0" text="ตัวอย่าง :">
                <font>
                   <Font size="16.0" />
@@ -239,6 +229,11 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Text>
+            <Button layoutX="14.0" layoutY="638.0" mnemonicParsing="false" onAction="#clear" prefHeight="35.0" prefWidth="70.0" text="Clear">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Pane layoutX="26.0" layoutY="12.0" prefHeight="347.0" prefWidth="593.0" style="-fx-background-color: #ccccff;">
@@ -280,7 +275,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane layoutX="26.0" layoutY="378.0" prefHeight="255.0" prefWidth="260.0" style="-fx-background-color: #ffccff;">
+      <Pane layoutX="26.0" layoutY="363.0" prefHeight="255.0" prefWidth="260.0" style="-fx-background-color: #ffccff;">
          <children>
             <TableView fx:id="roundTable" layoutX="147.0" layoutY="75.0" onMouseClicked="#handleRoundTableClicked" prefHeight="170.0" prefWidth="100.0">
               <columns>
@@ -303,6 +298,25 @@
                   <Font size="16.0" />
                </font>
             </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="26.0" layoutY="622.0" prefHeight="85.0" prefWidth="344.0" style="-fx-background-color: #ffcccc;">
+         <children>
+            <Button layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onAction="#exportAll" prefHeight="35.0" prefWidth="130.0" text="Export All">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Text layoutX="162.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- ลำดับภาพยนตร์ในหน้าหลัก      - ภาพยนตร์ที่มีในระบบ               - รอบฉายภาพยนตร์                   - ข้อมูลการจอง" wrappingWidth="181.484375">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="32.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="บันทึกข้อมูล">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>
