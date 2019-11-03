@@ -13,16 +13,10 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -55,11 +49,11 @@ public class TicketController {
                 seatNoLabel.setText(seatNo);
                 posterImageView.setImage(new Image(round.getMovie().getImgPosterPath()));
                 nameLabel.setText(cinema.getAccount().getFirstName()+" "+cinema.getAccount().getLastName());
-                priceLabel.setText("PRICE Vat Included : "+price+" baht");
+                priceLabel.setText("PRICE Vat Included : "+String.format("%,.2f", price)+" baht");
                 refLabel.setText("REF No. "+ref);
 
                 String qrText = cinema.getAccount().getFirstName()+" "+cinema.getAccount().getLastName()+
-                        "\nPRICE Vat Included : "+price+" baht"+
+                        "\nPRICE Vat Included : "+String.format("%,.2f", price)+" baht"+
                         "\nREF No. "+ ref+
                         "\nSEAT No.\n"+seatNo;
 
@@ -109,30 +103,3 @@ public class TicketController {
         image = ticketAnchorPane.snapshot(new SnapshotParameters(), null);
     }
 }
-
-
-//    @FXML public static void saveTicketImage() {
-//        FileChooser fileChooser = new FileChooser();
-//        File defaultDirectory = new File("./ticketsImage/");
-//        fileChooser.setInitialDirectory(defaultDirectory);
-//        fileChooser.setInitialFileName(ref.replace(":", "").replace(".", ""));
-//
-//        //Set extension filter
-//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("png files (*.png)", "*.png"));
-//
-//        //Prompt user to select a file
-//        File file = fileChooser.showSaveDialog(null);
-//
-//        if(file != null){
-//            try {
-//                //Pad the capture area
-//                //WritableImage writableImage = ticketAnchorPane.snapshot(new SnapshotParameters(), null);
-//                WritableImage writableImage = (WritableImage) image;
-//                RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-//                //Write the snapshot to the chosen file
-//                ImageIO.write(renderedImage, "png", file);
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//        }
-//    }
